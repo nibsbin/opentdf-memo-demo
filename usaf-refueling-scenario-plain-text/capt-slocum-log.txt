@@ -1,0 +1,17 @@
+FROM: CAPTAIN M. SLOCUM, MASTER, USNS PECOS (T-AO-197)
+TO: COMMANDER, TASK FORCE 73
+SUBJ: LOG ENTRY, 29OCT2025
+CLASSIFICATION: SECRET//FICTIONAL
+
+0400Z: On station, Point "ANCHOR".
+0530Z: Commenced UNREP approach with USS *HALSEY* (DDG-97).
+0545Z: Alongside *HALSEY*, starboard side. Standard procedure.
+0550Z: (S//FICTIONAL) Per separate orders (OPORD 25-114), passed fuel probe as normal. Simultaneously, my civ-mar team assisted two "technicians" (who came aboard via *HALSEY's* RHIB) in connecting the "special cargo."
+0555Z: (S//FICTIONAL) Cargo was a single, black, coffin-sized hard case. Marked "MET-SYS-4". No other identifying information.
+0610Z: (S//FICTIONAL) Case was transferred via standard shot-line to *HALSEY's* engineering bay, not the cargo hold. The transfer was timed to match the air refueling op overhead, as instructed.
+0615Z: (S//FICTIONAL) The "technicians" returned to *HALSEY*.
+0620Z: Broke away from *HALSEY*. All lines clear.
+0630Z: Resumed original course.
+0700Z: (S//FICTIONAL) Log entry. My crew has been instructed to log this evolution as a "fuel sensor calibration test" only. I don't like moving mystery boxes, especially not in the South China Sea. This is a supply ship, not a spy ship.
+
+CLASSIFICATION: SECRET//FICTIONAL

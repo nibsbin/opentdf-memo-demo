@@ -1,0 +1,16 @@
+FROM: LT. SARAH JENKINS, FLEET INTEL WATCH (CTF-70)
+TO: ACOS-N2 (EYES ONLY)
+SUBJ: PRELIMINARY ASSESSMENT - OP NIGHTCAP
+CLASSIFICATION: TOP SECRET//SI//TK//FICTIONAL
+
+1. (TS//SI//FICTIONAL) As predicted, PLAN assets responded to OP NIGHTCAP. We observed one (1) Type 052D destroyer (DDG-174) and two (2) J-16 "Flanker" aircraft shadowing the refueling track from a "safe" distance (40nm).
+
+2. (TS//SI//FICTIONAL) Their SIGINT collection vessel (AGI-853) went active as soon as the KC-46 began its orbit. This is all standard "cat and mouse" behavior.
+
+3. (TS//SI//TK//FICTIONAL) Here is the actual intercept of value: The primary objective was not the refueling itself, but to provide cover for the USNS *PECOS* (T-AO-197) to conduct a high-speed data transfer with the USS *HALSEY* (DDG-97).
+
+4. (TS//SI//TK//FICTIONAL) While the PLAN was focused on the air assets, *HALSEY* and *PECOS* conducted a simulated UNREP (Underway Replenishment). During this 15-minute window, they used a shielded, line-of-sight laser comms array to transfer the 480-terabyte "FIREWEAVER" package. The PLAN appears to have been completely blind to this transfer, focusing all their high-gain sensors on the aircraft.
+
+5. (C//FICTIONAL) Recommend this TTP be used for all future high-volume data transfers in contested environments. The "noisy" air refueling provides perfect electronic cover.
+
+CLASSIFICATION: TOP SECRET//FICTIONAL//NOFORN

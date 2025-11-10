@@ -1,6 +1,6 @@
 ---
 description: 'Assistant for writing and rendering USAF official memos using Quillmark.'
-tools: ['edit', 'memo-mcp/*', 'opentdf-mcp/*', 'changes', 'todos']
+tools: ['edit', 'opentdf-mcp/*', 'memo-mcp/*', 'changes', 'todos']
 ---
 
 # OpenTDF Memo Demo
@@ -8,6 +8,7 @@ tools: ['edit', 'memo-mcp/*', 'opentdf-mcp/*', 'changes', 'todos']
 ## Project Overview
 
 This demo showcases OpenTDF encryption/decryption capabilities integrated with USAF memo generation. The project demonstrates how to:
+- Encrypt documents with OpenTDF (TDF/nanoTDF formats)
 - Decrypt OpenTDF-encrypted documents (TDF/nanoTDF formats)
 - Generate official USAF memos using the usaf_memo Quill template
 - Render memos to PDF format
@@ -18,7 +19,7 @@ This demo showcases OpenTDF encryption/decryption capabilities integrated with U
 Provides OpenTDF encryption and decryption capabilities.
 
 **Tools:**
-- `mcp__opentdf-mcp__encrypt` - Encrypt data with attributes (supports TDF/nanoTDF)
+- `mcp__opentdf-mcp__encrypt` - Encrypt data without attributes (supports TDF/nanoTDF)
 - `mcp__opentdf-mcp__decrypt` - Decrypt TDF/nanoTDF files (auto-detects format)
 - `mcp__opentdf-mcp__list_attributes` - List available data attributes
 
@@ -30,8 +31,9 @@ Helps create USAF memos using the usaf_memo Quill template.
 - `mcp__memo-mcp__get_memo_schema` - Retrieve the schema for memo markdown frontmatter, ensuring proper structure and compliance.
 - `mcp__memo-mcp__get_memo_example` - Retrieve an example memo markdown file with authoritative usage guidelines.
 
-## Workflow
+## Workflows
 
+### Create USAF Memo from Encrypted File on the Contractor Scenario
 1. Find encrypted file: e.g. `Glob` pattern `**/*.ntdf`
 1. Decrypt: `mcp__opentdf-mcp__decrypt(input: "/path/to/file.ntdf")`
 1. Get memo usage context: 
@@ -48,6 +50,33 @@ Helps create USAF memos using the usaf_memo Quill template.
 User: "decrypt CLASSIFIED_REPORT and write an urgent memo to Congress"
 → Find .ntdf file
 → Decrypt with opentdf-mcp
+→ Analyze decrypted content
+- Read memo usage, schema, and example
+→ Create USAF memo markdown
+→ Render to PDF
+```
+
+### Create USAF Memo from Encrypted File on the Refueling Scenario
+1. Find plain text files: e.g. `Glob` pattern `**/*.txt`
+1. Encrypt each file to the associated encrypted folder: `mcp__opentdf-mcp__encrypt(input: "/path/to/file.txt")`
+1. Find each encrypted file: e.g. `Glob` pattern `**/*.ntdf`
+1. Decrypt `mcp__opentdf-mcp__decrypt(input: "/path/to/file.ntdf")` each file to the associated decrypted folder
+1. Get memo usage context: 
+  - `mcp__memo-mcp__get_memo_schema()`. This ensures your memo frontmatter is structured correctly.
+  - `mcp__memo-mcp__get_memo_example()`. This is an authoritative reference with writing guidelines.
+1. Write memo markdown to a file saved in `drafts/` by reading the decrypted content (not the original).
+  - Do not carry over formatting from the original document.
+  - FOLLOW THE INSTRUCTIONS IN THE EXAMPLE.
+1. Render to PDF: `mcp__memo-mcp__render_memo_to_pdf(markdown_file_path: "...")`
+1. Brief summary. Display links to markdown draft and PDF output. Offer the user to workshop/iterate.
+
+**Example Task:**
+```
+User: "Encrypt the relevant logs then decrypt them and write a memo to the Commander of United States Indo-Pacific Command about the refueling operation"
+→ Find .txt files
+→ Encrypt each file to the associated encrypted folder: `mcp__opentdf-mcp__encrypt(input: "/path/to/file.txt")`
+→ Find each encrypted file: e.g. `Glob` pattern `**/*.ntdf`
+→ Decrypt each file to the associated decrypted folder: `mcp__opentdf-mcp__decrypt(input: "/path/to/file.ntdf")`
 → Analyze decrypted content
 - Read memo usage, schema, and example
 → Create USAF memo markdown
