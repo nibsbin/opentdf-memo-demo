@@ -1,0 +1,13 @@
+FROM: CDR. M. PETERSON, LOGISTICS CMD (NAVSUP)
+TO: FILE (PERSONAL)
+SUBJ: MANIFEST ANOMALY - JP-8 BATCH 771-A (OP NIGHTCAP)
+CLASSIFICATION: PERSONAL MEMO FOR RECORD
+
+1. I am logging this for my own protection.
+2. On 27 OCT, I received a direct order from O-6 level (INDOPACOM J4) to modify the fuel manifest for the USNS *PECOS*.
+3. The order required me to sign off on a load of 2.2 million gallons of JP-8 that was documented as "standard spec."
+4. However, I was directed to ensure BATCH 771-A, drawn from the Subic Bay reserve, was used. This batch was *not* standard spec. It contains a high-concentration admixture of "Additive K-14" (a new molecular tracer).
+5. My records show this additive is experimental and designed to bond with specific engine alloys, creating a unique, long-term isotopic signature detectable by our new orbital sensor grid (Project "ODIN'S EYE").
+6. The *PECOS* was then instructed to use *only* this batch to refuel the USS *HALSEY* and her escorts. The air assets (KC-46) received clean fuel from a separate tank.
+7. This means we are "tagging" our own strike group. The official justification was "long-range fuel efficiency tracking."
+8. My concern: This is not a test of fuel. This is a test of the ODIN'S EYE system *using our own fleet as live targets*. If this system is ever compromised, we have just provided a perfect tracking signature for our entire Carrier Strike Group to the enemy. This order feels reckless.
