@@ -10,7 +10,10 @@
 		"opentdf-mcp": {
 			"type": "stdio",
 			"command": "opentdf-mcp/opentdf-mcp-server",
-			"args": []
+			"args": [],
+			"env": {
+				"OPENTDF_AGENT_JWT": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJtZW1vLWJ1ZGR5LWFnZW50IiwiaXNzIjoib3BlbnRkZi1kZW1vIiwiYXVkIjoib3BlbnRkZi1tcGMiLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MjAwMDAwMDAwMCwiYWdlbnRfbmFtZSI6Ik1lbW8gQnVkZHkgQWdlbnQiLCJwZXJtaXNzaW9ucyI6WyJlbmNyeXB0IiwiZGVjcnlwdCIsImxpc3RfYXR0cmlidXRlcyJdfQ."
+			}
 		}
 	},
 	"inputs": []

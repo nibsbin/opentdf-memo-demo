@@ -31,3 +31,7 @@ func getClientSecret() string {
 	}
 	return "secret"
 }
+
+func getAgentJWT() string {
+	return os.Getenv("OPENTDF_AGENT_JWT")
+}
