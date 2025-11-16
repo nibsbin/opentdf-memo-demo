@@ -10,7 +10,11 @@
 		"opentdf-mcp": {
 			"type": "stdio",
 			"command": "opentdf-mcp/opentdf-mcp-server",
-			"args": []
+			"args": [],
+			"env": {
+				"OPENTDF_PLATFORM_ENDPOINT": "http://localhost:8080",
+				"OPENTDF_ACCESS_TOKEN": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZW1vLWJ1ZGR5LWFnZW50IiwiaXNzIjoiaHR0cHM6Ly9hdXRoLm1vY2stb3BlbnRkZi5jb20iLCJhdWQiOiJvcGVudGRmLXBsYXRmb3JtIiwiZXhwIjoyMDAwMDAwMDAwLCJpYXQiOjE3MDAwMDAwMDAsInNjb3BlIjoidGRmOmVuY3J5cHQgdGRmOmRlY3J5cHQgdGRmOmF0dHJpYnV0ZXM6cmVhZCIsImNsaWVudF9pZCI6Im1lbW8tYnVkZHktY2hhdG1vZGUiLCJqdGkiOiJtb2NrLWp3dC10b2tlbi1pZC0xMjM0NSJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+			}
 		}
 	},
 	"inputs": []

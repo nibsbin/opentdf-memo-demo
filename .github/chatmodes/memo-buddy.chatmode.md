@@ -18,6 +18,18 @@ This demo showcases OpenTDF encryption/decryption capabilities integrated with U
 ### opentdf-mcp
 Provides OpenTDF encryption and decryption capabilities.
 
+**Authentication:**
+This chatmode uses a mock JWT token for agent authentication to the OpenTDF platform. The token is embedded in the MCP configuration (`.vscode/mcp.json`) and passed via the `OPENTDF_ACCESS_TOKEN` environment variable.
+
+**Mock JWT Token Details:**
+- **Subject:** `memo-buddy-agent`
+- **Issuer:** `https://auth.mock-opentdf.com`
+- **Audience:** `opentdf-platform`
+- **Scopes:** `tdf:encrypt tdf:decrypt tdf:attributes:read`
+- **Client ID:** `memo-buddy-chatmode`
+
+**Note:** In a production environment, this JWT would be dynamically issued by an OAuth2 authorization server with user consent. This mock token demonstrates the authentication flow without requiring a live OAuth2 infrastructure.
+
 **Tools:**
 - `mcp__opentdf-mcp__encrypt` - Encrypt data without attributes (supports TDF/nanoTDF)
 - `mcp__opentdf-mcp__decrypt` - Decrypt TDF/nanoTDF files (auto-detects format)
