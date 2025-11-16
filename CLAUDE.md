@@ -18,7 +18,10 @@ This demo showcases OpenTDF encryption/decryption capabilities integrated with U
 Provides OpenTDF encryption and decryption capabilities.
 
 **Tools:**
-- `mcp__opentdf-mcp__encrypt` - Encrypt data without attributes (supports TDF/nanoTDF)
+- `mcp__opentdf-mcp__encrypt` - Encrypt data with optional attributes (supports TDF/nanoTDF)
+  - Use `input` parameter for file paths: encrypts the file contents
+  - Use `data` parameter for literal text: encrypts the text directly
+  - Parameters are mutually exclusive (specify one or the other)
 - `mcp__opentdf-mcp__decrypt` - Decrypt TDF/nanoTDF files (auto-detects format)
 - `mcp__opentdf-mcp__list_attributes` - List available data attributes
 
@@ -84,10 +87,15 @@ User: "Encrypt the relevant logs then decrypt them and write a memo to the Comma
 
 ## Best Practices
 
-### OpenTDF
+### OpenTDF Encryption/Decryption
+- **Encrypting files**: Use `input` parameter with file path
+  - Example: `mcp__opentdf-mcp__encrypt(input: "/path/to/file.txt", format: "nano")`
+  - This reads and encrypts the file contents (not the path string)
+- **Encrypting literal text**: Use `data` parameter with text
+  - Example: `mcp__opentdf-mcp__encrypt(data: "Secret message", format: "nano")`
 - Prefer nanoTDF format (`format: "nano"`) for better compatibility
 - Decrypt tool auto-detects TDF vs nanoTDF format
-- Check available attributes with `list_attributes` before encrypting
+- Check available attributes with `list_attributes` before encrypting with attributes
 
 ### File Operations
 - Check if files exist with Glob before attempting operations
