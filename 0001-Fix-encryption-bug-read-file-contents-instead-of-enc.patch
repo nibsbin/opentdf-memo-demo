@@ -1,0 +1,156 @@
+From d43e4f388aa9748b2c6fc175bbd922babf4545df Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 16 Nov 2025 02:58:08 +0000
+Subject: [PATCH] Fix encryption bug: read file contents instead of encrypting
+ path
+
+Previously, when calling encrypt with a file path in the 'data' parameter,
+the function would encrypt the file path string itself instead of reading
+and encrypting the file contents.
+
+Changes:
+- Added 'input' field to EncryptToolInput for file paths
+- Made 'input' and 'data' mutually exclusive parameters
+- Added validation to ensure exactly one parameter is provided
+- Added file reading logic when 'input' is specified
+- Updated tool description to clarify parameter usage
+
+This ensures that when a file path is provided via 'input', the actual
+file contents are read and encrypted, not the path string itself.
+---
+ BUG_FIX.md         | 61 ++++++++++++++++++++++++++++++++++++++++++++++
+ mcp-server/main.go | 29 +++++++++++++++++++---
+ 2 files changed, 87 insertions(+), 3 deletions(-)
+ create mode 100644 BUG_FIX.md
+
+diff --git a/BUG_FIX.md b/BUG_FIX.md
+new file mode 100644
+index 0000000..7908b90
+--- /dev/null
++++ b/BUG_FIX.md
+@@ -0,0 +1,61 @@
++# Bug Fix: File Path Encrypted Instead of File Contents
++
++## Problem
++When calling `mcp__opentdf-mcp__encrypt` with a file path in the `input` parameter (e.g., `input: "/path/to/file.txt"`), the function was encrypting the file path string itself instead of reading and encrypting the file contents. This resulted in .ntdf files containing the encrypted file path rather than the actual file data.
++
++## Root Cause
++The `EncryptToolInput` schema only had a `data` field which was ambiguously described as "The data to encrypt". When users passed a file path, the code treated it as literal string data rather than a file path to read from.
++
++## Solution
++Modified `mcp-server/main.go` to:
++
++1. **Added `Input` field**: New parameter specifically for file paths
++   ```go
++   Input string `json:"input,omitempty" jsonschema:"Path to plaintext file to encrypt (mutually exclusive with data)"`
++   ```
++
++2. **Made parameters mutually exclusive**: Both `Input` and `Data` are now optional but one must be provided
++
++3. **Added validation**: Ensures exactly one parameter is specified
++   ```go
++   if input.Input != "" && input.Data != "" {
++       return error: "cannot specify both 'input' and 'data' parameters"
++   }
++   if input.Input == "" && input.Data == "" {
++       return error: "must specify either 'input' (file path) or 'data' (literal data)"
++   }
++   ```
++
++4. **File reading logic**: When `Input` is provided, read file contents
++   ```go
++   if input.Input != "" {
++       fileData, err := os.ReadFile(input.Input)
++       if err != nil {
++           return error
++       }
++       dataToEncrypt = string(fileData)
++   } else {
++       dataToEncrypt = input.Data
++   }
++   ```
++
++5. **Updated description**: Tool description now clarifies: "Specify either 'input' (file path) or 'data' (literal text)"
++
++## Changes Made
++- File: `opentdf-mcp/mcp-server/main.go`
++  - Modified `EncryptToolInput` struct (lines 22-28)
++  - Added validation and file reading in `MCPEncrypt` function (lines 96-116)
++  - Updated tool description (line 327)
++
++## Testing
++To test the fix (after rebuilding the binary):
++```bash
++# Encrypt a file by path
++mcp__opentdf-mcp__encrypt(input: "/path/to/file.txt", format: "nano", output: "encrypted.ntdf")
++
++# Encrypt literal data
++mcp__opentdf-mcp__encrypt(data: "Hello World", format: "nano", output: "encrypted.ntdf")
++```
++
++## Note on Build
++The binary rebuild requires Go 1.25.1 which was not available in the test environment due to network restrictions. The source code changes are complete and tested for syntax. The binary will need to be rebuilt in an environment with proper network access to Go package repositories.
+diff --git a/mcp-server/main.go b/mcp-server/main.go
+index b169ab2..b1ce0f1 100644
+--- a/mcp-server/main.go
++++ b/mcp-server/main.go
+@@ -20,7 +20,8 @@ import (
+ // Tool input/output schemas
+ // EncryptToolInput defines the input for the encrypt tool
+ type EncryptToolInput struct {
+-	Data       string   `json:"data" jsonschema:"The data to encrypt"`
++	Input      string   `json:"input,omitempty" jsonschema:"Path to plaintext file to encrypt (mutually exclusive with data)"`
++	Data       string   `json:"data,omitempty" jsonschema:"Literal data to encrypt (mutually exclusive with input)"`
+ 	Attributes []string `json:"attributes" jsonschema:"Data attributes (FQNs) to apply during encryption"`
+ 	Format     string   `json:"format,omitempty" jsonschema:"Output format: 'tdf' or 'nano' (default: nano)"`
+ 	Output     string   `json:"output,omitempty" jsonschema:"Output file path (optional, returns base64 if not specified)"`
+@@ -92,6 +93,28 @@ func MCPEncrypt(ctx context.Context, req *mcp.CallToolRequest, input EncryptTool
+ 	}
+ 	defer client.Close()
+ 
++	// Validate input: either Input or Data must be provided, but not both
++	if input.Input != "" && input.Data != "" {
++		return nil, EncryptToolOutput{Success: false, Error: "cannot specify both 'input' and 'data' parameters"}, nil
++	}
++	if input.Input == "" && input.Data == "" {
++		return nil, EncryptToolOutput{Success: false, Error: "must specify either 'input' (file path) or 'data' (literal data)"}, nil
++	}
++
++	// Get the data to encrypt
++	var dataToEncrypt string
++	if input.Input != "" {
++		// Read file contents
++		fileData, err := os.ReadFile(input.Input)
++		if err != nil {
++			return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to read input file: %v", err)}, nil
++		}
++		dataToEncrypt = string(fileData)
++	} else {
++		// Use literal data
++		dataToEncrypt = input.Data
++	}
++
+ 	// Determine format
+ 	useNano := input.Format == "" || input.Format == "nano"
+ 
+@@ -105,7 +128,7 @@ func MCPEncrypt(ctx context.Context, req *mcp.CallToolRequest, input EncryptTool
+ 	}
+ 
+ 	// Encrypt
+-	reader := strings.NewReader(input.Data)
++	reader := strings.NewReader(dataToEncrypt)
+ 	file, err := os.Create(outputFile)
+ 	if err != nil {
+ 		return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to create output file: %v", err)}, nil
+@@ -301,7 +324,7 @@ func runMCPServer() error {
+ 	// Add encrypt tool
+ 	mcp.AddTool(server, &mcp.Tool{
+ 		Name:        "encrypt",
+-		Description: "Encrypt data using OpenTDF with the specified attributes. Creates a TDF or nanoTDF file. Use nanoTDF format for better compatibility.",
++		Description: "Encrypt data using OpenTDF with the specified attributes. Creates a TDF or nanoTDF file. Use nanoTDF format for better compatibility. Specify either 'input' (file path) or 'data' (literal text).",
+ 	}, MCPEncrypt)
+ 
+ 	// Add decrypt tool
+-- 
+2.43.0
+
