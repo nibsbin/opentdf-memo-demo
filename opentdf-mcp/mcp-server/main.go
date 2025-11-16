@@ -5,11 +5,14 @@ package main
 import (
 	"bytes"
 	"context"
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/opentdf/platform/protocol/go/policy/attributes"
@@ -62,6 +65,108 @@ type AttributeInfo struct {
 	Name      string   `json:"name"`
 	Values    []string `json:"values,omitempty"`
 	FQN       string   `json:"fqn"`
+}
+
+// JWT Claims structure for agent authentication
+type JWTClaims struct {
+	Sub         string   `json:"sub"`         // Subject (agent ID)
+	Iss         string   `json:"iss"`         // Issuer
+	Aud         string   `json:"aud"`         // Audience
+	Iat         int64    `json:"iat"`         // Issued at
+	Exp         int64    `json:"exp"`         // Expiration
+	AgentName   string   `json:"agent_name"`  // Agent display name
+	Permissions []string `json:"permissions"` // Granted permissions
+}
+
+// parseJWT parses a JWT token and extracts claims (mock implementation - no signature verification)
+func parseJWT(token string) (*JWTClaims, error) {
+	if token == "" {
+		return nil, fmt.Errorf("no JWT token provided")
+	}
+
+	// Split the JWT into parts
+	parts := strings.Split(token, ".")
+	if len(parts) < 2 {
+		return nil, fmt.Errorf("invalid JWT format")
+	}
+
+	// Decode the payload (second part)
+	payload := parts[1]
+
+	// Add padding if needed for base64 decoding
+	if l := len(payload) % 4; l > 0 {
+		payload += strings.Repeat("=", 4-l)
+	}
+
+	// Decode base64
+	decoded, err := base64.URLEncoding.DecodeString(payload)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode JWT payload: %w", err)
+	}
+
+	// Parse JSON
+	var claims JWTClaims
+	if err := json.Unmarshal(decoded, &claims); err != nil {
+		return nil, fmt.Errorf("failed to parse JWT claims: %w", err)
+	}
+
+	return &claims, nil
+}
+
+// validateJWT performs basic validation on JWT claims (mock implementation)
+func validateJWT(claims *JWTClaims) error {
+	if claims == nil {
+		return fmt.Errorf("no claims provided")
+	}
+
+	// Check audience
+	if claims.Aud != "opentdf-mcp" {
+		return fmt.Errorf("invalid audience: expected 'opentdf-mcp', got '%s'", claims.Aud)
+	}
+
+	// Check expiration
+	now := time.Now().Unix()
+	if claims.Exp > 0 && claims.Exp < now {
+		return fmt.Errorf("token expired")
+	}
+
+	// Check issued at
+	if claims.Iat > 0 && claims.Iat > now {
+		return fmt.Errorf("token used before issued")
+	}
+
+	return nil
+}
+
+// logAgentAuthentication logs the agent authentication details
+func logAgentAuthentication() {
+	token := getAgentJWT()
+	if token == "" {
+		log.Println("WARNING: No agent JWT token found. Running without agent authentication.")
+		log.Println("In production, this would require OAuth-issued JWT after user consent.")
+		return
+	}
+
+	claims, err := parseJWT(token)
+	if err != nil {
+		log.Printf("WARNING: Failed to parse agent JWT: %v\n", err)
+		return
+	}
+
+	if err := validateJWT(claims); err != nil {
+		log.Printf("WARNING: JWT validation failed: %v\n", err)
+		return
+	}
+
+	log.Println("=== Agent Authentication ===")
+	log.Printf("Agent ID: %s\n", claims.Sub)
+	log.Printf("Agent Name: %s\n", claims.AgentName)
+	log.Printf("Issuer: %s\n", claims.Iss)
+	log.Printf("Permissions: %v\n", claims.Permissions)
+	log.Printf("Expires: %s\n", time.Unix(claims.Exp, 0).Format(time.RFC3339))
+	log.Println("NOTE: This is a MOCK JWT for demo purposes.")
+	log.Println("In production, JWT would be issued by OAuth after user consent.")
+	log.Println("===========================")
 }
 
 // getSDKClientMCP creates an authenticated OpenTDF SDK client for MCP
@@ -311,6 +416,9 @@ func MCPListAttributes(ctx context.Context, req *mcp.CallToolRequest, input List
 }
 
 func runMCPServer() error {
+	// Log agent authentication details
+	logAgentAuthentication()
+
 	// Create MCP server
 	server := mcp.NewServer(&mcp.Implementation{
 		Name:    "opentdf-mcp",

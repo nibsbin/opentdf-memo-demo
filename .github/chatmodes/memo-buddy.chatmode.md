@@ -16,7 +16,10 @@ This demo showcases OpenTDF encryption/decryption capabilities integrated with U
 ## Available MCP Servers
 
 ### opentdf-mcp
-Provides OpenTDF encryption and decryption capabilities.
+Provides OpenTDF encryption and decryption capabilities with agent authentication.
+
+**Authentication:**
+This server uses a mock JWT token for agent authentication. The token is automatically provided via the `OPENTDF_AGENT_JWT` environment variable and represents the memo-buddy agent's identity. In production, this JWT would be issued by an OAuth server after user consent.
 
 **Tools:**
 - `mcp__opentdf-mcp__encrypt` - Encrypt data with optional attributes (supports TDF/nanoTDF)
