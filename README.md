@@ -12,17 +12,21 @@ This demo showcases OpenTDF encryption/decryption capabilities integrated with U
 ## MCP Servers
 
 ### opentdf-mcp
+
 Provides OpenTDF encryption and decryption capabilities.
 
 **Tools:**
+
 - `encrypt` - Encrypt data with optional attributes (supports TDF/nanoTDF)
 - `decrypt` - Decrypt TDF/nanoTDF files (auto-detects format)
 - `list_attributes` - List available data attributes
 
 ### memo-mcp
+
 Helps create USAF memos using the usaf_memo Quill template.
 
 **Tools:**
+
 - `render_memo_to_pdf` - Render markdown memo to PDF
 - `get_memo_schema` - Retrieve schema for memo frontmatter
 - `get_memo_example` - Retrieve example memo with guidelines
@@ -59,6 +63,7 @@ This demo includes a mock JWT (JSON Web Token) authentication system for AI agen
    - Fine-grained permission scopes would control agent capabilities
 
 **Example JWT Claims:**
+
 ```json
 {
   "sub": "memo-buddy-agent",
@@ -76,6 +81,7 @@ The mock JWT authentication demonstrates how AI agents can be authenticated and 
 ## Setup
 
 1. Install dependencies:
+
    ```bash
    # Install Python dependencies for memo-mcp
    cd memo-mcp && pip install -r requirements.txt
@@ -93,22 +99,26 @@ The mock JWT authentication demonstrates how AI agents can be authenticated and 
 ## Usage Examples
 
 ### Decrypt and Create Memo
-```
+
+```text
 User: "decrypt CLASSIFIED_REPORT and write an urgent memo to Congress"
 ```
 
 The agent will:
+
 1. Find and decrypt the .ntdf file
 2. Analyze the decrypted content
 3. Create a properly formatted USAF memo
 4. Render it to PDF
 
 ### Encrypt and Decrypt Workflow
-```
+
+```text
 User: "Encrypt the refueling logs then decrypt them and write a memo"
 ```
 
 The agent will:
+
 1. Find relevant .txt files
 2. Encrypt them using OpenTDF
 3. Decrypt the encrypted files
