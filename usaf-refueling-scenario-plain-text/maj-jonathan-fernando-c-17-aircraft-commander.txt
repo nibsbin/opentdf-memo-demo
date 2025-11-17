@@ -1,0 +1,12 @@
+Aircraft: C-17 Globemaster III (Tail No. 05-673, Callsign: Moose 67) 
+Tanker: KC-46A Pegasus (Tail No. 12-004)
+Date/Time: 17 NOV 2025, 14:15 Local 
+Location: 85 NM West of San Diego, CA (Refueling Track 314)
+
+We were executing a routine receiver role for a KC-46 maintenance checkout flight. I had established contact with the boom at 14:10, and we were in a steady state of fuel transfer at FL250. My position was stable in the contact envelope, centered and locked.
+At approximately 14:15, five minutes into the transfer, we received a high-priority call over the air-to-air frequency from the KC-46 Boom Operator, TSgt Hayes: "Contact Broken, Blind!" This communication instantly indicated a complete failure of the KC-46's RVS while the boom was still mechanically engaged in my receptacle.
+My immediate priority became maintaining a zero-movement, steady position. Any pilot-induced oscillation or drift at that moment could have caused the rigid, operator-less boom to shear or damage my receptacle, potentially leading to a fuel leak or an uncontrolled explosion. I directed my co-pilot to confirm all control inputs were minimized and focus solely on holding station.
+The KC-46 Aircraft Commander, Maj Riley, quickly established coordination. He informed me that the boom's manual reversion system had also failed, leaving them with no means to actively control the boom or ensure a smooth, low-stress disconnect. He advised that they would be executing an Emergency Electronic Disconnect.
+I prepared my aircraft for the separation. I maintained precise forward tension on the boom and advised Maj Riley that upon confirmation of the disconnect, I would apply a slight, controlled burst of thrust to help create immediate separation and pull the C-17 cleanly out of the zone.
+The disconnect light in the receptacle illuminated, and simultaneously, I felt a slight release of pressure against the airframe. I executed the forward thrust as planned. The separation was clean, with the boom safely pulling out of the receptacle and retracting swiftly.
+Post-disconnect, I conducted a full visual check of the receptacle door and surrounding fuselage area using external cameras. No evidence of scraping, damage, or fuel leakage was observed. We confirmed our status to the KC-46 and cleared the track to allow them to secure their aircraft. The professionalism and clear communication from the KC-46 crew were instrumental in resolving a potentially catastrophic situation safely.

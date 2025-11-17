@@ -1,0 +1,16 @@
+Aircraft: KC-46A Pegasus (Tail No. 12-004) 
+Receiver: C-17 Globemaster III (Tail No. 05-673) 
+Date/Time: 17 NOV 2025, 14:15 Local 
+Location: 85 NM West of San Diego, CA (Refueling Track 314)
+
+Account of Incident:
+We were conducting the final receiver contact for the maintenance checkout flight. I was monitoring standard flight and fuel parameters while Maj Riley (Aircraft Commander) maintained station on the refueling track. The contact with the C-17 ('Moose 67') was standard.
+At 14:15, TSgt Hayes transmitted an emergency call: "Contact Broken, Blind!" This was immediately followed by Maj Riley's acknowledgement. My immediate response was to confirm the aircraft was in stable flight. Autopilot was confirmed engaged and holding altitude (FL250) and speed (270 KIAS), which was critical to prevent receiver contact damage.
+Maj Riley immediately directed me to pull the In-Flight Refueling Malfunction Checklist and specifically the section for "RVS Failure with Boom Connected."
+I initiated the checklist, performing the following actions:
+1. Communications: Relayed the In-Flight Refueling Malfunction status to ATC, requesting a clear area for maneuvering and status updates. Coordinated the situation with the C-17 crew via the air-to-air frequency, specifically confirming the boom was structurally stable in their receptacle.
+2. Systems Monitoring: Confirmed the transfer pumps were secured (Maj Riley directed this early to minimize boom vibration) and monitored hydraulic pressure for the boom. Pressures remained nominal.
+3. Troubleshooting: Per the checklist, I confirmed the TSgt Hayes’ attempt to use manual reversion had failed, solidifying the diagnosis of a complete RVS computational lockup, which disabled both the RVS and the manual backup.
+Maj Riley then made the critical decision to execute the Emergency Electronic Disconnect. My role shifted to monitoring the crew coordination and ensuring the aircraft remained perfectly stabilized. I watched the C-17 on the MFD and called out its relative position and closure rate to Maj Riley as an added layer of safety before the disconnect.
+The disconnect was clean and instantaneous. TSgt Hayes retracted and secured the boom immediately via the emergency hydraulics. Once the C-17 was safely clear of our formation and confirmed undamaged, I completed the securing procedures on the IFR Malfunction checklist.
+We concluded the mission by setting course for home station. The coordinated effort between Maj Riley, TSgt Hayes, and the C-17 crew prevented a simple RVS failure from escalating into a high-consequence incident.

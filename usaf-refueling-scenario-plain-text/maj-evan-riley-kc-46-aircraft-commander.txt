@@ -1,0 +1,12 @@
+Aircraft: KC-46A Pegasus (Tail No. 12-004) 
+Receiver: C-17 Globemaster III (Tail No. 05-673) 
+Date/Time: 17 NOV 2025, 14:15 Local 
+Location: 85 NM West of San Diego, CA (Refueling Track 314)
+
+Account of Incident:
+We were five minutes into the scheduled high-altitude refueling contact with the C-17 (callsign 'Moose 67'). Flight parameters were stable: FL250, 270 KIAS, mild turbulence. The atmosphere in the cockpit was routine.
+At approximately 14:15, TSgt Hayes transmitted, "Contact Broken, Blind!" The call was clear but carried immediate gravity. I immediately acknowledged the call, informed the co-pilot (Capt. Lee), and initiated a standard emergency notification to ATC regarding an in-flight refueling system malfunction.
+My focus shifted instantly to maintaining absolute aircraft stability to prevent a boom strike or catastrophic structural failure on the C-17. I directed Capt. Lee to confirm autopilot status (engaged, maintaining altitude and speed) and to initiate the tanker emergency procedure checklist for RVS failure while the boom is connected.
+TSgt Hayes reported that the manual flight control reversion had failed to engage. The boom was effectively locked in place. Given the high stress state and the inability to fly the boom manually, the decision was made to execute an Emergency Electronic Disconnect.
+I coordinated directly with the C-17 Aircraft Commander, who was holding an impeccable stable position. I advised them we would execute the emergency disconnect and requested they apply a slight, controlled forward thrust immediately upon seeing the disconnect light (which signifies the latch being released) to facilitate clean separation.TSgt Hayes executed the disconnect toggle. I felt a slight, immediate tremor through the airframe as the high-pressure lock released. Simultaneously, the C-17 commander responded perfectly, moving slightly forward and away. We observed a clean break. The boom retracted smoothly using the emergency hydraulic system, and I directed TSgt Hayes to confirm it was latched and secured.
+Once the boom was secured, I directed the C-17 to clear the track and confirmed they had suffered no damage. We terminated the refueling mission and established a divert plan to return to our home station for immediate RVS maintenance. The performance of TSgt Hayes and the crew of the C-17 was exceptional, preventing what could have been a serious air-to-air collision event.
