@@ -21,7 +21,7 @@ Dependencies are already configured in `go.mod`.
 # OpenTDF CLI (opentdf-mcp)
 
 A small Go-based CLI that demonstrates using the OpenTDF SDK to
-create and consume TDF and nanoTDF data, request entitlements, and list
+create and consume nanoTDF data, request entitlements, and list
 policy attributes against an OpenTDF platform.
 
 This README focuses on using the `opentdf-cli` tool shipped in this
@@ -67,7 +67,7 @@ This CLI works against an OpenTDF platform endpoint. Set the endpoint
 with `OPENTDF_PLATFORM_ENDPOINT` (default: `http://localhost:8080`).
 
 Ensure the platform's KAS (Key Access Server) is reachable if you plan
-to create or decrypt TDF files that require KAS operations.
+to create or decrypt nanoTDF files that require KAS operations.
 
 ---
 
@@ -80,11 +80,10 @@ The OpenTDF MCP server exposes OpenTDF operations as MCP tools that can be used 
 The server provides the following tools:
 
 1. **encrypt** - Encrypt data using OpenTDF with specified attributes
-   - Supports both TDF and nanoTDF formats
-   - Creates encrypted files with policy bindings
+   - Uses nanoTDF format exclusively
+   - Creates .ntdf encrypted files with policy bindings
 
-2. **decrypt** - Decrypt TDF or nanoTDF files
-   - Automatically detects format
+2. **decrypt** - Decrypt nanoTDF files
    - Returns plaintext data
 
 3. **list_attributes** - List available data attributes from the platform
@@ -142,53 +141,23 @@ The MCP tools provide structured responses with success/failure status and detai
 
 Build the binary (see Build section) and then use the following examples.
 
-Encrypt (recommended: nanoTDF)
+Encrypt (nanoTDF)
 
-The easiest way to get a working encrypt/decrypt flow against a platform
-without needing external KAS hostnames is to use nanoTDF mode. Nano mode
-uses the platform's KAS at `<OPENTDF_PLATFORM_ENDPOINT>/kas`.
+The CLI uses nanoTDF format exclusively. NanoTDF uses the platform's KAS at `<OPENTDF_PLATFORM_ENDPOINT>/kas`.
 
 ```bash
 ./opentdf-cli encrypt -a https://example.com/attr/attr1/value/value1 -o encrypted.ntdf "Hello Nano"
 ```
 
-Encrypt (standard TDF — advanced)
-
-Standard TDF encryption may require contacting the Key Access Server
-(KAS) configured for the attribute values used. If an attribute's key
-access server points to an external host (for example `kas.example.com`)
-and that host is not resolvable or reachable from your environment, the
-CLI will fail with an error like:
-
-```
-Error: failed to create TDF: unable to retrieve public key from KAS at [https://kas.example.com]: error making request to KAS: unavailable: dial tcp: lookup kas.example.com: no such host
-```
-
-If you need to use standard TDF (non-nano):
-
-1. Ensure `OPENTDF_PLATFORM_ENDPOINT` points to a platform whose KAS
-    endpoint is reachable and correctly configured for the attribute
-    values you plan to use.
-2. Use attributes whose key access server is reachable from your host,
-    or update platform fixtures / configuration to point to a reachable KAS.
-3. (Not recommended for general use) Add a host entry so the KAS
-    hostname resolves to an appropriate address.
-
-Example (may fail if KAS is unreachable for the chosen attributes):
-
-```bash
-./opentdf-cli encrypt -a https://example.com/attr/attr1/value/value1 -o encrypted.tdf "Hello World"
-```
-
 Notes:
 - Use `-a` multiple times to supply multiple data attributes.
-- `-o` sets the output file (default `encrypted.tdf`).
+- `-o` sets the output file (default `encrypted.ntdf`).
 
 Decrypt (prints plaintext to stdout)
 
 ```bash
 # default (uses OPENTDF_CLIENT_ID/OPENTDF_CLIENT_SECRET env vars or defaults)
-./opentdf-cli decrypt encrypted.tdf > decrypted.txt
+./opentdf-cli decrypt encrypted.ntdf > decrypted.txt
 ```
 
 If decryption fails with a KAS permission error (see Troubleshooting),
@@ -228,13 +197,9 @@ Help
 - Unknown attribute FQN (ErrNotFound): The platform will return an error
     if you attempt to use an attribute FQN that doesn't exist. Use
     `./opentdf-cli attributes list` to find valid FQNs.
-- KAS unreachable: If encrypt (standard TDF) fails because the CLI
-    attempted to contact a KAS (for example `kas.example.com`), ensure
-    your `OPENTDF_PLATFORM_ENDPOINT` points to a platform whose KAS
-    endpoint is reachable. If your platform exposes KAS at
-    `<platform>/kas`, you can use `-nano` so the CLI targets that
-    endpoint when creating nanoTDF.
-- permission_denied during decrypt (nanoTDF): The KAS must rewrap the
+- KAS unreachable: Ensure your `OPENTDF_PLATFORM_ENDPOINT` points to a
+    platform whose KAS endpoint is reachable at `<platform>/kas`.
+- permission_denied during decrypt: The KAS must rewrap the
     key for the requesting client. The demo fixtures give that permission
     to the client id `opentdf-sdk`. If you see `permission_denied`, try
     decrypting with `OPENTDF_CLIENT_ID=opentdf-sdk OPENTDF_CLIENT_SECRET=secret`.

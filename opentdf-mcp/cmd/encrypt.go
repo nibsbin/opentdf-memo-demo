@@ -33,7 +33,7 @@ import (
 // attribute configuration, or encryption operations.
 func handleEncrypt() error {
 	fs := flag.NewFlagSet("encrypt", flag.ExitOnError)
-	output := fs.String("o", "encrypted.tdf", "Output file path")
+	output := fs.String("o", "encrypted.ntdf", "Output file path")
 
 	// Parse attributes flag multiple times
 	var attributes []string

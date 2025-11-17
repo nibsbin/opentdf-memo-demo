@@ -26,7 +26,6 @@ type EncryptToolInput struct {
 	Input      string   `json:"input,omitempty" jsonschema:"Path to plaintext file to encrypt (mutually exclusive with data)"`
 	Data       string   `json:"data,omitempty" jsonschema:"Literal data to encrypt (mutually exclusive with input)"`
 	Attributes []string `json:"attributes" jsonschema:"Data attributes (FQNs) to apply during encryption"`
-	Format     string   `json:"format,omitempty" jsonschema:"Output format: 'tdf' or 'nano' (default: nano)"`
 	Output     string   `json:"output,omitempty" jsonschema:"Output file path (optional, returns base64 if not specified)"`
 }
 
@@ -220,16 +219,10 @@ func MCPEncrypt(ctx context.Context, req *mcp.CallToolRequest, input EncryptTool
 		dataToEncrypt = input.Data
 	}
 
-	// Determine format
-	useNano := input.Format == "" || input.Format == "nano"
-
+	// Always use nanoTDF format
 	outputFile := input.Output
 	if outputFile == "" {
-		if useNano {
-			outputFile = "encrypted.ntdf"
-		} else {
-			outputFile = "encrypted.tdf"
-		}
+		outputFile = "encrypted.ntdf"
 	}
 
 	// Encrypt
@@ -245,31 +238,26 @@ func MCPEncrypt(ctx context.Context, req *mcp.CallToolRequest, input EncryptTool
 		baseKasURL = "http://" + baseKasURL
 	}
 
-	if useNano {
-		nanoConfig, err := client.NewNanoTDFConfig()
-		if err != nil {
-			return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to create nanoTDF config: %v", err)}, nil
-		}
+	// Create nanoTDF config
+	nanoConfig, err := client.NewNanoTDFConfig()
+	if err != nil {
+		return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to create nanoTDF config: %v", err)}, nil
+	}
 
-		if len(input.Attributes) > 0 {
-			if err := nanoConfig.SetAttributes(input.Attributes); err != nil {
-				return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to set attributes: %v", err)}, nil
-			}
+	if len(input.Attributes) > 0 {
+		if err := nanoConfig.SetAttributes(input.Attributes); err != nil {
+			return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to set attributes: %v", err)}, nil
 		}
+	}
 
-		nanoConfig.EnableECDSAPolicyBinding()
+	nanoConfig.EnableECDSAPolicyBinding()
 
-		if err := nanoConfig.SetKasURL(baseKasURL + "/kas"); err != nil {
-			return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to set KAS URL: %v", err)}, nil
-		}
+	if err := nanoConfig.SetKasURL(baseKasURL + "/kas"); err != nil {
+		return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to set KAS URL: %v", err)}, nil
+	}
 
-		if _, err := client.CreateNanoTDF(file, reader, *nanoConfig); err != nil {
-			return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to encrypt (nano): %v", err)}, nil
-		}
-	} else {
-		if _, err := client.CreateTDF(file, reader, sdk.WithDataAttributes(input.Attributes...)); err != nil {
-			return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to encrypt: %v", err)}, nil
-		}
+	if _, err := client.CreateNanoTDF(file, reader, *nanoConfig); err != nil {
+		return nil, EncryptToolOutput{Success: false, Error: fmt.Sprintf("failed to encrypt: %v", err)}, nil
 	}
 
 	msg := fmt.Sprintf("Successfully encrypted data to %s", outputFile)
@@ -432,7 +420,7 @@ func runMCPServer() error {
 	// Add encrypt tool
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "encrypt",
-		Description: "Encrypt data using OpenTDF with the specified attributes. Creates a TDF or nanoTDF file. Use nanoTDF format for better compatibility. Specify either 'input' (file path) or 'data' (literal text).",
+		Description: "Encrypt data using OpenTDF with the specified attributes. Creates a nanoTDF file (.ntdf). Specify either 'input' (file path) or 'data' (literal text).",
 	}, MCPEncrypt)
 
 	// Add decrypt tool
