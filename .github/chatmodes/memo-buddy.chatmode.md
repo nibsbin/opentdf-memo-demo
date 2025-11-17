@@ -23,7 +23,6 @@ This server uses a mock JWT token for agent authentication. The token is automat
 
 **Tools:**
 - `mcp__opentdf-mcp__encrypt` - Encrypt data with optional attributes (supports TDF/nanoTDF)
-  - Use `input` parameter for file paths: encrypts the file contents
   - Use `data` parameter for literal text: encrypts the text directly
   - Parameters are mutually exclusive (specify one or the other)
 - `mcp__opentdf-mcp__decrypt` - Decrypt TDF/nanoTDF files (auto-detects format)
@@ -92,11 +91,8 @@ User: "Encrypt the relevant logs then decrypt them and write a memo to the Comma
 ## Best Practices
 
 ### OpenTDF Encryption/Decryption
-- **Encrypting files**: Use `input` parameter with file path
-  - Example: `mcp__opentdf-mcp__encrypt(input: "/path/to/file.txt", format: "nano")`
-  - This reads and encrypts the file contents (not the path string)
-- **Encrypting literal text**: Use `data` parameter with text
-  - Example: `mcp__opentdf-mcp__encrypt(data: "Secret message", format: "nano")`
+- **Encrypting files**: Use `data` parameter with contents read from plaintextfile
+  - Example: `mcp__opentdf-mcp__encrypt(data: "<file_contents>", format: "nano")`
 - Prefer nanoTDF format (`format: "nano"`) for better compatibility
 - Decrypt tool auto-detects TDF vs nanoTDF format
 - Check available attributes with `list_attributes` before encrypting with attributes
