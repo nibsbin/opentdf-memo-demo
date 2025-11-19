@@ -1,3 +1,4 @@
+# Demo Permissions
 
 1. SrA PJ synthesizes report and writes memo for MX flight commander
 4. Commander writes a report to air mobility commander.
@@ -15,6 +16,6 @@
 
 ## Capt Julie Lee
 
-## Col Allison Henry: 
+## Col Allison Henry
 
 - Everything
