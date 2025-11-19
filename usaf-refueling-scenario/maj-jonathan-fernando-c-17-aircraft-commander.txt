@@ -3,7 +3,7 @@ Tanker: KC-46A Pegasus (Tail No. 12-004)
 Date/Time: 17 NOV 2025, 14:15 Local 
 Location: 85 NM West of San Diego, CA (Refueling Track 314)
 
-Account of Incident:
+Summary of Incident:
 We were executing a routine receiver role for a KC-46 maintenance checkout flight. I had established contact with the boom at 14:10, and we were in a steady state of fuel transfer at FL250. My position was stable in the contact envelope, centered and locked.
 Approximately five minutes into the transfer, at 14:15, I felt an unusual, almost imperceptible surge in pressure against the receptacle. It wasn't an actual shift in the boom's position, but rather a momentary, stiff resistance—a feeling that the connection suddenly went from a firm mechanical lock to something rigidly bound. It was the kind of sensation that made me instinctively brace, wondering if the boom operator had inadvertently moved the boom or if my own station-keeping had wavered, though the flight controls were dead steady.
 Before I could voice my concern to the co-pilot, we received a high-priority call over the air-to-air frequency from the KC-46 Boom Operator, TSgt Hayes: "Contact Broken, Blind!"

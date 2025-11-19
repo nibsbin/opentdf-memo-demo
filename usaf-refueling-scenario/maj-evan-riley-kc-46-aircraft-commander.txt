@@ -3,7 +3,7 @@ Receiver: C-17 Globemaster III (Tail No. 05-673)
 Date/Time: 17 NOV 2025, 14:15 Local 
 Location: 85 NM West of San Diego, CA (Refueling Track 314)
 
-Account of Incident:
+Summary of Incident:
 We were five minutes into the scheduled high-altitude refueling contact with the C-17 (callsign 'Moose 67'). Flight parameters were stable: FL250, 270 KIAS, mild turbulence. The atmosphere in the cockpit was routine.
 At approximately 14:15, TSgt Hayes transmitted, "Contact Broken, Blind!" The call was clear but carried immediate gravity. I immediately acknowledged the call, informed the co-pilot (Capt. Lee), and initiated a standard emergency notification to ATC regarding an in-flight refueling system malfunction.
 My focus shifted instantly to maintaining absolute aircraft stability to prevent a boom strike or catastrophic structural failure on the C-17. I directed Capt. Lee to confirm autopilot status (engaged, maintaining altitude and speed) and to initiate the tanker emergency procedure checklist for RVS failure while the boom is connected.

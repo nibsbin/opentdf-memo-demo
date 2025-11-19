@@ -3,7 +3,7 @@ Receiver: C-17 Globemaster III (Tail No. 05-673)
 Date/Time: 17 NOV 2025, 14:15 Local 
 Location: 85 NM West of San Diego, CA (Refueling Track 314)
 
-Account of Incident:
+Summary of Incident:
 The mission was a routine post-maintenance check-flight, with the C-17 serving as the receiver for scheduled high-altitude contacts. Weather was clear, visibility unlimited. At approximately 14:05, I extended the boom for the final contact sequence. The C-17 closed cleanly and within limits. We achieved contact at 14:10, verified structural rigidity, and initiated fuel transfer.
 The RVS display was operating normally, showing the receiver aircraft’s receptacle clearly centered in the visual envelope. Approximately five minutes into the transfer, with 12,000 lbs of fuel transferred, the RVS system experienced a catastrophic failure. The main RVS display immediately froze on a single frame, followed by a complete blackout of all three screens—the main tactical display and both side monitors—and the loss of all augmented data feeds. I was left completely blind with the boom engaged.
 My immediate actions were per checklist: I initiated the "Contact Broken, Blind" call to the pilot and the receiver crew, simultaneously attempting to switch to the backup manual flight controls. The manual reversion failed to engage; the boom remained fixed and unresponsive to my controls, indicating a complete systems lockup, likely tied to the RVS hardware bus failure.

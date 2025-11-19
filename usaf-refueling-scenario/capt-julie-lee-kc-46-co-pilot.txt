@@ -3,7 +3,7 @@ Receiver: C-17 Globemaster III (Tail No. 05-673)
 Date/Time: 17 NOV 2025, 14:15 Local 
 Location: 85 NM West of San Diego, CA (Refueling Track 314)
 
-Account of Incident:
+Summary of Incident:
 We were conducting the final receiver contact for the maintenance checkout flight. I was monitoring standard flight and fuel parameters while Maj Riley (Aircraft Commander) maintained station on the refueling track. The contact with the C-17 ('Moose 67') was standard.
 At 14:15, TSgt Hayes transmitted an emergency call: "Contact Broken, Blind!" This was immediately followed by Maj Riley's acknowledgement. My immediate response was to confirm the aircraft was in stable flight. Autopilot was confirmed engaged and holding altitude (FL250) and speed (270 KIAS), which was critical to prevent receiver contact damage.
 Maj Riley immediately directed me to pull the In-Flight Refueling Malfunction Checklist and specifically the section for "RVS Failure with Boom Connected."
