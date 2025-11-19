@@ -1,0 +1,9 @@
+﻿Inspection_ID,Component,Sub_Component,Finding_Type,Damage_Description,Likely_Cause,Severity,Corrective_Action_Required,Status
+1,Boom Nozzle Assembly,Overall,Visual Inspection,No external scraping or major structural deformation,N/A,LOW,N/A,INSPECTED
+2,Primary Hydraulic Seal Safety Pin,Nozzle Throat,Structural Failure,Fractured (Shear Pin Failure),"Instantaneous, high-shearing force from Emergency Disconnect",HIGH (Requires Replacement),Replacement of entire boom nozzle assembly,RED-TAGGED
+3,Latch Jaw A,Internal Surface near Solenoid,Structural Failure,Hairline Micro-Fracture (3 mm),Instantaneous pressure spike from electrical release of high-tension lock,HIGH (Compromised Integrity),Replacement of entire boom nozzle assembly,RED-TAGGED
+4,RVS Computational Unit,Main Unit,Aircrew Report,Total loss of functionality (Blackout),RVS hardware bus failure,CRITICAL (Mission Failure),Replacement of RVS Computational Unit,RED-TAGGED
+5,Emergency Hydraulic Accumulator,System Pressure,System Check,Pressure nominal and within tolerance,N/A,LOW,N/A,INSPECTED
+6,Boom Telescoping Actuator,Main Drive Gears,Visual Inspection,No evidence of binding or excessive wear,N/A,LOW,N/A,INSPECTED
+7,Boom Light System,Navigation/Strobe Lights,Functional Check,All lights operational and bright,N/A,LOW,N/A,INSPECTED
+8,Aft Observation Window,Glass and Seals,Visual Inspection,"No cracks, stress marks, or seal breaches",N/A,LOW,N/A,INSPECTED

@@ -1,0 +1,17 @@
+﻿Time_s,Event_Timestamp_Local,Tanker_Tail,Receiver_Callsign,Flight_Phase,Fuel_Transfer_Rate_PPH,Fuel_Transferred_Total_Lbs,RVS_Status,Boom_Control_Mode,Boom_Position_Angle_deg,Boom_Latch_Status,System_Error_Code,Pilot_Action
+400,14:08:00,12-004,Moose 67,Approach,0,0,Nominal,RVS-Auto,35.1,Unlatched,None,Standard Approach Checklist
+500,14:09:40,12-004,Moose 67,Pre-Contact,0,0,Nominal,RVS-Auto,42.5,Unlatched,None,Final Position Hold
+540,14:10:20,12-004,Moose 67,Contact Established,2000,0,Nominal,RVS-Auto,45,Latched,None,Verify Structural Lock
+580,14:11:00,12-004,Moose 67,Transfer Steady,6000,4000,Nominal,RVS-Auto,45,Latched,None,Monitor Transfer
+620,14:11:40,12-004,Moose 67,Transfer Steady,6000,8000,Nominal,RVS-Auto,45,Latched,None,Monitor Transfer
+660,14:12:20,12-004,Moose 67,Transfer Steady,6000,12000,Nominal,RVS-Auto,45,Latched,None,Monitor Transfer
+660.1,14:15:00,12-004,Moose 67,FAILURE INSTANT,0,12000,FAILURE,RVS-Auto,45,Latched,RVS_UNIT_LOCKUP_001,SYSTEM FAILURE
+660.2,14:15:00,12-004,Moose 67,Emergency,0,12000,OFFLINE,RVS-Auto,45,Latched,RVS_UNIT_LOCKUP_001,"Boom Operator: ""Contact Broken Blind!"""
+661,14:15:01,12-004,Moose 67,Emergency,0,12000,OFFLINE,Manual Reversion,45,Latched,BOOM_CONTROL_FAIL_003,Attempt Manual Reversion (Failed)
+665,14:15:05,12-004,Moose 67,Emergency,0,12000,OFFLINE,Locked,45,Latched,SYSTEM_LOCKUP_004,KC-46 AC: Confirm Autopilot/Stability
+670,14:15:10,12-004,Moose 67,Emergency,0,12000,OFFLINE,Locked,45,Latched,SYSTEM_LOCKUP_004,KC-46 Co-Pilot: Initiate Checklist/ATC Comm
+675,14:15:15,12-004,Moose 67,Disconnect Prep,0,12000,OFFLINE,Locked,45,Latched,SYSTEM_LOCKUP_004,Coordinate Emergency Disconnect w/C-17
+676,14:15:16,12-004,Moose 67,Disconnect EXECUTE,0,12000,OFFLINE,Locked,45,Unlatched,SYSTEM_LOCKUP_004,Execute Electronic Disconnect Toggle
+676.5,15:16.5,12-004,Moose 67,Separation,0,12000,OFFLINE,Locked,45.5,Unlatched,None,C-17 Executes Forward Thrust
+685,14:15:25,12-004,Moose 67,Post-Disconnect,0,12000,OFFLINE,Emergency Hydraulics,30,Unlatched,None,Begin Boom Retraction
+700,14:15:40,12-004,Moose 67,Mission Aborted,0,12000,OFFLINE,Secured,5,Secured,None,Boom Secured/C-17 Clears Track
