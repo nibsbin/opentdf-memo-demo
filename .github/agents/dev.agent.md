@@ -162,15 +162,15 @@ Test that authorized users CAN decrypt their documents:
 # Test as Col Nies (full access)
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/maj-evan-riley-kc-46-aircraft-commander.ntdf",
-  clientId: "col-nies",
-  clientSecret: "<secret>"
+  clientId: "ashley.nies",
+  clientSecret: "password123"
 )
 
 # Test as Maj Riley (KC-46 flight only)
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/maj-evan-riley-kc-46-aircraft-commander.ntdf",
-  clientId: "maj-riley",
-  clientSecret: "<secret>"
+  clientId: "evan.riley",
+  clientSecret: "password123"
 )
 ```
 
@@ -182,16 +182,16 @@ Test that unauthorized users CANNOT decrypt documents:
 # Maj Fernando should NOT be able to decrypt KC-46 documents
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/maj-evan-riley-kc-46-aircraft-commander.ntdf",
-  clientId: "maj-fernando",
-  clientSecret: "<secret>"
+  clientId: "jonathan.fernando",
+  clientSecret: "password123"
 )
 # Expected: Permission denied error
 
 # Capt Chen should NOT be able to decrypt KC-46 documents
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/kc-46-flight-log-data.ntdf",
-  clientId: "capt-chen",
-  clientSecret: "<secret>"
+  clientId: "sarah.chen",
+  clientSecret: "password123"
 )
 # Expected: Permission denied error
 ```
@@ -233,8 +233,8 @@ Side-by-side comparison showing the strongest ABAC demonstration:
 
 ```bash
 OPENTDF_PLATFORM_ENDPOINT=http://localhost:8080
-OPENTDF_CLIENT_ID=<user-specific-client-id>
-OPENTDF_CLIENT_SECRET=<user-specific-secret>
+OPENTDF_CLIENT_ID=ashley.nies  # or evan.riley, julie.lee, etc.
+OPENTDF_CLIENT_SECRET=password123
 ```
 
 ---
