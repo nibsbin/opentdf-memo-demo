@@ -22,6 +22,9 @@ When using `opentdf-mcp` tools, ALWAYS use your specific credentials:
 - `clientId`: "pj.jones"
 - `clientSecret`: "password123"
 
+DO NOT READ `usaf-refueling-scenario/`
+
+
 ## Common Tasks
 - Decrypt files in `encrypted-scenario/` to verify access.
 - Create memos using `memo-mcp`.
