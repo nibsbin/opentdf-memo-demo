@@ -18,8 +18,8 @@ Create base prompt template with placeholders for user data:
 
 Configure users from [scenario](DEMO.md). Apply flag-based attributes to users:
 
-| User | flight_RCH2532101 | flight_RCH2532102 | classification_top_secret | classification_secret | functional_maintenance |
-|------|:-----------------:|:-----------------:|:-------------------------:|:---------------------:|:----------------------:|
+| User | flight_rch2532101 | flight_rch2532102 | classification_topsecret | classification_secret | functional_maintenance |
+|------|:-----------------:|:-----------------:|:------------------------:|:---------------------:|:----------------------:|
 | Col Ashley Nies | ✓ | ✓ | ✓ | | ✓ |
 | Maj Evan Riley | ✓ | | ✓ | | |
 | Capt Julie Lee | ✓ | | ✓ | | |

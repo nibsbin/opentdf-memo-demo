@@ -54,18 +54,18 @@ The "aha!" moment: Two pilots (Maj Riley and Maj Fernando) have the same role, b
 
 ## Attribute FQNs (Fully Qualified Names)
 
-Use these exact FQNs when encrypting documents:
+Use these exact FQNs when encrypting documents (flag-based attributes):
 
 **Flight Identifiers:**
-- `https://demo.usaf.mil/attr/flight_id/value/RCH2532101` (KC-46 flight)
-- `https://demo.usaf.mil/attr/flight_id/value/RCH2532102` (C-17 flight)
+- `https://demo.usaf.mil/attr/flight_rch2532101/value/true` (KC-46 flight)
+- `https://demo.usaf.mil/attr/flight_rch2532102/value/true` (C-17 flight)
 
 **Classification:**
-- `https://demo.usaf.mil/attr/classification/value/top-secret-fictional`
-- `https://demo.usaf.mil/attr/classification/value/secret-fictional`
+- `https://demo.usaf.mil/attr/classification_topsecret/value/true`
+- `https://demo.usaf.mil/attr/classification_secret/value/true`
 
 **Functional:**
-- `https://demo.usaf.mil/attr/functional/value/maintenance`
+- `https://demo.usaf.mil/attr/functional_maintenance/value/true`
 
 > **Important:** Always verify available attributes with `mcp__opentdf-mcp__list_attributes(verbose: true)` before encrypting.
 
@@ -114,9 +114,11 @@ mcp__opentdf-mcp__list_attributes(verbose: true)
 ```
 
 Expected namespaces/attributes:
-- `https://demo.usaf.mil/attr/flight_id` with values: RCH2532101, RCH2532102
-- `https://demo.usaf.mil/attr/classification` with values: top-secret-fictional, secret-fictional
-- `https://demo.usaf.mil/attr/functional` with values: maintenance
+- `https://demo.usaf.mil/attr/flight_rch2532101`
+- `https://demo.usaf.mil/attr/flight_rch2532102`
+- `https://demo.usaf.mil/attr/classification_topsecret`
+- `https://demo.usaf.mil/attr/classification_secret`
+- `https://demo.usaf.mil/attr/functional_maintenance`
 
 ### 2. Encrypt Scenario Documents
 
@@ -127,8 +129,8 @@ Encrypt each document with the appropriate attributes based on its type. **Prefe
 mcp__opentdf-mcp__encrypt(
   input: "usaf-refueling-scenario/maj-evan-riley-kc-46-aircraft-commander.txt",
   attributes: [
-    "https://demo.usaf.mil/attr/flight_id/value/RCH2532101",
-    "https://demo.usaf.mil/attr/classification/value/top-secret-fictional"
+    "https://demo.usaf.mil/attr/flight_rch2532101/value/true",
+    "https://demo.usaf.mil/attr/classification_topsecret/value/true"
   ],
   output: "ENCRYPTED/maj-evan-riley-kc-46-aircraft-commander.ntdf"
 )
@@ -139,8 +141,8 @@ mcp__opentdf-mcp__encrypt(
 mcp__opentdf-mcp__encrypt(
   input: "usaf-refueling-scenario/kc-46-flight-log-data.csv",
   attributes: [
-    "https://demo.usaf.mil/attr/flight_id/value/RCH2532101",
-    "https://demo.usaf.mil/attr/classification/value/secret-fictional"
+    "https://demo.usaf.mil/attr/flight_rch2532101/value/true",
+    "https://demo.usaf.mil/attr/classification_secret/value/true"
   ],
   output: "ENCRYPTED/kc-46-flight-log-data.ntdf"
 )
@@ -151,9 +153,9 @@ mcp__opentdf-mcp__encrypt(
 mcp__opentdf-mcp__encrypt(
   input: "usaf-refueling-scenario/maintenance-inspection-findings.csv",
   attributes: [
-    "https://demo.usaf.mil/attr/flight_id/value/RCH2532101",
-    "https://demo.usaf.mil/attr/classification/value/secret-fictional",
-    "https://demo.usaf.mil/attr/functional/value/maintenance"
+    "https://demo.usaf.mil/attr/flight_rch2532101/value/true",
+    "https://demo.usaf.mil/attr/classification_secret/value/true",
+    "https://demo.usaf.mil/attr/functional_maintenance/value/true"
   ],
   output: "ENCRYPTED/maintenance-inspection-findings.ntdf"
 )
@@ -223,7 +225,7 @@ Side-by-side comparison showing the strongest ABAC demonstration:
 ### Pre-Demo Validation
 
 1. ☐ Platform is running and accessible
-2. ☐ `list_attributes` returns expected flight-id, classification, and functional attributes
+2. ☐ `list_attributes` returns expected flight_rch..., classification_..., and functional_... attributes
 3. ☐ All 10 scenario documents are encrypted with correct attributes
 4. ☐ Keycloak users are configured with correct attributes (per SCENARIO_INTEGRATION.md)
 
