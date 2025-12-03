@@ -1,0 +1,23 @@
+Aircraft: C-17 Globemaster III (Tail No. 05-673, Callsign: Moose 67) 
+Tanker: KC-46A Pegasus (Tail No. 12-004)
+Date/Time: 17 NOV 2025, 14:15 Local 
+Location: 85 NM West of San Diego, CA (Refueling Track 314)
+
+Summary of Incident:
+We were conducting a routine receiver mission as part of a KC-46 post-maintenance checkout flight. I was monitoring fuel state, aircraft systems, and maintaining communications with the tanker and ATC. Maj Fernando (Aircraft Commander) had established a textbook approach and was flying a rock-steady contact position.
+
+At 14:10, the boom operator confirmed contact and we began receiving fuel. The transfer was proceeding normally—I was tracking our fuel quantity increase and cross-checking our position in the refueling envelope via the FLIR display.
+
+At approximately 14:15, I heard the boom operator's emergency transmission: "Contact Broken, Blind!" The urgency in his voice was unmistakable. I immediately cross-checked our flight instruments and confirmed we were stable—autopilot engaged, altitude hold solid at FL250, airspeed locked at 270 KIAS.
+
+Maj Fernando's immediate response was to freeze all control inputs. He directed me to maintain radio discipline and stand by for coordination from the tanker. I confirmed our autopilot status and began monitoring our closure rate and relative position to the tanker on the TCAS display.
+
+The tanker Aircraft Commander, Maj Riley, came up on the air-to-air frequency and advised they had experienced a complete RVS failure with the boom locked in our receptacle. He requested we maintain absolute stability and prepare for an Emergency Electronic Disconnect. I acknowledged and confirmed our position was steady.
+
+My primary focus became backing up Maj Fernando on aircraft stability. I called out any minor deviations in altitude or airspeed (there were none—Maj Fernando's flying was impeccable under pressure). When Maj Riley called "Disconnect in 3, 2, 1, Execute," I felt a slight jolt through the airframe as the boom released.
+
+Maj Fernando immediately applied a slight forward thrust as briefed, and I watched the boom retract cleanly on the aft-facing camera. We were clear. I confirmed separation to the tanker and Maj Fernando executed a smooth departure from the refueling track.
+
+Post-separation, I conducted a damage assessment using our available sensors and visual inspection capabilities. The receptacle appeared undamaged—no visible fuel leaks, no structural deformation visible on the aft camera. I relayed this to the tanker crew.
+
+We terminated the mission and set course for home station. The coordination between our crew and the KC-46 crew was exceptional. What could have been a catastrophic mid-air incident was resolved cleanly through disciplined communication and steady airmanship.

@@ -1,0 +1,26 @@
+Timestamp_Local,Latitude_deg,Longitude_deg,Altitude_ft,Airspeed_KIAS,AOA_deg,Roll_deg,Pitch_deg,Fuel_Remaining_Lbs,Receptacle_Status,Flight_Phase
+14:08:00,32.4950,-118.4900,24950,268,3.2,0.1,1.4,45000,Closed,Approach to Tanker
+14:08:30,32.4980,-118.4950,24980,269,3.1,0,1.5,44950,Closed,Approach to Tanker
+14:09:00,32.5010,-118.5000,25000,270,3.1,0,1.5,44900,Closed,Approach to Tanker
+14:09:30,32.5080,-118.5100,25000,270,3.1,0,1.5,44850,Closed,Pre-Contact Position
+14:10:00,32.5150,-118.5200,25000,270,3.1,0,1.5,44800,Closed,Pre-Contact Position
+14:10:20,32.5233,-118.5588,25000,270,3.1,0,1.5,44750,Open - Contact,Contact Established
+14:10:30,32.5250,-118.5630,25000,270,3.1,0,1.5,44917,Receiving,Fuel Transfer
+14:11:00,32.5300,-118.5756,25000,270,3.1,0,1.5,46083,Receiving,Fuel Transfer
+14:11:30,32.5350,-118.5882,25000,270,3.1,0,1.5,47083,Receiving,Fuel Transfer
+14:12:00,32.5400,-118.6008,25000,270,3.1,0,1.5,48083,Receiving,Fuel Transfer
+14:12:30,32.5450,-118.6134,25000,270,3.1,0,1.5,50083,Receiving,Fuel Transfer
+14:13:00,32.5500,-118.6260,25000,270,3.1,0,1.5,52083,Receiving,Fuel Transfer
+14:13:30,32.5550,-118.6386,25000,270,3.1,0,1.5,54083,Receiving,Fuel Transfer
+14:14:00,32.5600,-118.6512,25000,270,3.1,0,1.5,55583,Receiving,Fuel Transfer
+14:14:30,32.5650,-118.6638,25000,270,3.1,0,1.5,56750,Receiving,Fuel Transfer
+14:15:00,32.5700,-118.6764,25000,270,3.1,0,1.5,56750,LOCKED - EMERGENCY,Boom Operator: Contact Broken Blind
+14:15:01,32.5701,-118.6766,25000,270,3.1,0,1.5,56750,LOCKED - EMERGENCY,Maintain Steady Position
+14:15:05,32.5705,-118.6774,25000,270,3.1,0,1.5,56750,LOCKED - EMERGENCY,Autopilot Confirmed Engaged
+14:15:10,32.5710,-118.6785,25000,270,3.1,0,1.5,56750,LOCKED - EMERGENCY,Coordinating with Tanker
+14:15:15,32.5715,-118.6796,25000,270,3.1,0,1.5,56750,LOCKED - EMERGENCY,Prepare for Emergency Disconnect
+14:15:16,32.5716,-118.6798,25000,270,3.0,0,1.5,56750,DISCONNECT,Electronic Disconnect Executed
+14:15:17,32.5720,-118.6806,25000,272,3.0,0,1.6,56750,Clear,Forward Thrust Applied - Separation
+14:15:25,32.5750,-118.6870,25000,275,2.9,0.5,1.8,56750,Clear,Boom Clear - Departing Track
+14:15:40,32.5850,-118.7000,25000,280,2.8,2.0,2.0,56750,Closed,Clearing Formation
+14:16:00,32.6000,-118.7200,25000,285,2.7,0,2.0,56700,Closed,RTB - Mission Aborted
