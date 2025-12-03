@@ -23,20 +23,26 @@ With Attribute-Based Access Control, each user is tagged with the specific fligh
 
 This is **infeasible with RBAC** because you'd need to create a new role for every single flight mission.
 
-### Flight Identifier Attributes
+### Flight Identifier Attributes (flight_id)
 
-- Flight-related documents (individual summaries and logs) are encrypted with a unique flight identifier attribute
+- Flight-related documents (individual summaries and logs) are encrypted with a unique `flight_id` attribute
 - KC-46 unique flight identifier: **RCH2532101** (Call Sign REACH, 2025, 321st day, 1st flight mission)
 - C-17 unique flight identifier: **RCH2532102** (Call Sign REACH, 2025, 321st day, 2nd flight mission)
+- Attribute namespace: `https://demo.usaf.mil`
+- Full FQN example: `https://demo.usaf.mil/attr/flight_id/value/RCH2532101`
 
-### Classification Attributes
+### Classification Attributes (classification)
 
 - Documents can be encrypted with the **top-secret-fictional** attribute if they are top secret//fictional
 - Documents can be encrypted with the **secret-fictional** attribute if they are secret//fictional
+- Full FQN examples:
+  - `https://demo.usaf.mil/attr/classification/value/top-secret-fictional`
+  - `https://demo.usaf.mil/attr/classification/value/secret-fictional`
 
-### Functional Attributes
+### Functional Attributes (functional)
 
 - Documents can be encrypted with the **maintenance** attribute if they are relevant to maintainers
+- Full FQN: `https://demo.usaf.mil/attr/functional/value/maintenance`
 
 ## Access
 
@@ -48,8 +54,8 @@ This is **infeasible with RBAC** because you'd need to create a new role for eve
 
 ### Key ABAC Demonstration Points
 
-| User | Role | Flight Attribute | Can Decrypt KC-46 (RCH2532101) Files? | Can Decrypt C-17 (RCH2532102) Files? |
-|------|------|------------------|---------------------------------------|--------------------------------------|
+| User | Role | flight_id | Can Decrypt KC-46 (RCH2532101) Files? | Can Decrypt C-17 (RCH2532102) Files? |
+|------|------|-----------|---------------------------------------|--------------------------------------|
 | Col Nies | Wing Commander | RCH2532101, RCH2532102 | ✅ Yes | ✅ Yes |
 | Maj Riley | KC-46 Pilot | RCH2532101 | ✅ Yes | ❌ No |
 | Capt Lee | KC-46 Co-Pilot | RCH2532101 | ✅ Yes | ❌ No |
@@ -177,7 +183,7 @@ Therefore, can access:
 
 ### KC-46 Flight Documents (RCH2532101)
 
-| Document | Flight ID | Classification | Functional |
+| Document | flight_id | classification | functional |
 |----------|-----------|----------------|------------|
 | [maj-evan-riley-kc-46-aircraft-commander.txt](usaf-refueling-scenario/maj-evan-riley-kc-46-aircraft-commander.txt) | RCH2532101 | top-secret-fictional | — |
 | [capt-julie-lee-kc-46-co-pilot.txt](usaf-refueling-scenario/capt-julie-lee-kc-46-co-pilot.txt) | RCH2532101 | top-secret-fictional | — |
@@ -187,7 +193,7 @@ Therefore, can access:
 
 ### C-17 Flight Documents (RCH2532102)
 
-| Document | Flight ID | Classification | Functional |
+| Document | flight_id | classification | functional |
 |----------|-----------|----------------|------------|
 | [maj-jonathan-fernando-c-17-aircraft-commander.txt](usaf-refueling-scenario/maj-jonathan-fernando-c-17-aircraft-commander.txt) | RCH2532102 | top-secret-fictional | — |
 | [capt-sarah-chen-c-17-co-pilot.txt](usaf-refueling-scenario/capt-sarah-chen-c-17-co-pilot.txt) | RCH2532102 | top-secret-fictional | — |
@@ -195,7 +201,7 @@ Therefore, can access:
 
 ### Maintenance Documents
 
-| Document | Flight ID | Classification | Functional |
+| Document | flight_id | classification | functional |
 |----------|-----------|----------------|------------|
 | [sra-pj-jones-kc-46-maintainer.txt](usaf-refueling-scenario/sra-pj-jones-kc-46-maintainer.txt) | RCH2532101 | secret-fictional | maintenance |
 | [maintenance-inspection-findings.csv](usaf-refueling-scenario/maintenance-inspection-findings.csv) | RCH2532101 | secret-fictional | maintenance |

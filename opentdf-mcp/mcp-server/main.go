@@ -23,10 +23,12 @@ import (
 // Tool input/output schemas
 // EncryptToolInput defines the input for the encrypt tool
 type EncryptToolInput struct {
-	Input      string   `json:"input,omitempty" jsonschema:"Path to plaintext file to encrypt (mutually exclusive with data)"`
-	Data       string   `json:"data,omitempty" jsonschema:"Literal data to encrypt (mutually exclusive with input)"`
-	Attributes []string `json:"attributes" jsonschema:"Data attributes (FQNs) to apply during encryption"`
-	Output     string   `json:"output,omitempty" jsonschema:"Output file path (optional, returns base64 if not specified)"`
+	Input        string   `json:"input,omitempty" jsonschema:"Path to plaintext file to encrypt (mutually exclusive with data)"`
+	Data         string   `json:"data,omitempty" jsonschema:"Literal data to encrypt (mutually exclusive with input)"`
+	Attributes   []string `json:"attributes" jsonschema:"Data attributes (FQNs) to apply during encryption"`
+	Output       string   `json:"output,omitempty" jsonschema:"Output file path (optional, returns base64 if not specified)"`
+	ClientID     string   `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_ID or default if not specified)"`
+	ClientSecret string   `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_SECRET or default if not specified)"`
 }
 
 type EncryptToolOutput struct {
@@ -38,8 +40,10 @@ type EncryptToolOutput struct {
 
 // DecryptToolInput defines the input for the decrypt tool
 type DecryptToolInput struct {
-	Input  string `json:"input" jsonschema:"Path to encrypted file or base64 encoded data"`
-	Output string `json:"output,omitempty" jsonschema:"Output file path (optional, returns plaintext if not specified)"`
+	Input        string `json:"input" jsonschema:"Path to encrypted file or base64 encoded data"`
+	Output       string `json:"output,omitempty" jsonschema:"Output file path (optional, returns plaintext if not specified)"`
+	ClientID     string `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_ID or default if not specified)"`
+	ClientSecret string `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_SECRET or default if not specified)"`
 }
 
 type DecryptToolOutput struct {
@@ -49,8 +53,10 @@ type DecryptToolOutput struct {
 }
 
 type ListAttributesToolInput struct {
-	Namespace string `json:"namespace,omitempty" jsonschema:"Filter by namespace (e.g., https://example.com)"`
-	Verbose   bool   `json:"verbose,omitempty" jsonschema:"Show detailed attribute information"`
+	Namespace    string `json:"namespace,omitempty" jsonschema:"Filter by namespace (e.g., https://example.com)"`
+	Verbose      bool   `json:"verbose,omitempty" jsonschema:"Show detailed attribute information"`
+	ClientID     string `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_ID or default if not specified)"`
+	ClientSecret string `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_SECRET or default if not specified)"`
 }
 
 type ListAttributesToolOutput struct {
@@ -169,10 +175,17 @@ func logAgentAuthentication() {
 }
 
 // getSDKClientMCP creates an authenticated OpenTDF SDK client for MCP
-func getSDKClientMCP() (*sdk.SDK, error) {
+// If clientID and clientSecret are provided, they take precedence over environment variables
+func getSDKClientMCP(clientID, clientSecret string) (*sdk.SDK, error) {
 	platformEndpoint := getPlatformEndpoint()
-	clientID := getClientID()
-	clientSecret := getClientSecret()
+
+	// Use provided credentials if available, otherwise fall back to config
+	if clientID == "" {
+		clientID = getClientID()
+	}
+	if clientSecret == "" {
+		clientSecret = getClientSecret()
+	}
 
 	var opts []sdk.Option
 	if clientID != "" && clientSecret != "" {
@@ -191,7 +204,7 @@ func getSDKClientMCP() (*sdk.SDK, error) {
 
 // MCPEncrypt encrypts data with the given attributes
 func MCPEncrypt(ctx context.Context, req *mcp.CallToolRequest, input EncryptToolInput) (*mcp.CallToolResult, EncryptToolOutput, error) {
-	client, err := getSDKClientMCP()
+	client, err := getSDKClientMCP(input.ClientID, input.ClientSecret)
 	if err != nil {
 		return nil, EncryptToolOutput{Success: false, Error: err.Error()}, nil
 	}
@@ -270,7 +283,7 @@ func MCPEncrypt(ctx context.Context, req *mcp.CallToolRequest, input EncryptTool
 
 // MCPDecrypt decrypts a TDF or nanoTDF file
 func MCPDecrypt(ctx context.Context, req *mcp.CallToolRequest, input DecryptToolInput) (*mcp.CallToolResult, DecryptToolOutput, error) {
-	client, err := getSDKClientMCP()
+	client, err := getSDKClientMCP(input.ClientID, input.ClientSecret)
 	if err != nil {
 		return nil, DecryptToolOutput{Success: false, Error: err.Error()}, nil
 	}
@@ -328,7 +341,7 @@ func MCPDecrypt(ctx context.Context, req *mcp.CallToolRequest, input DecryptTool
 
 // MCPListAttributes lists available attributes
 func MCPListAttributes(ctx context.Context, req *mcp.CallToolRequest, input ListAttributesToolInput) (*mcp.CallToolResult, ListAttributesToolOutput, error) {
-	client, err := getSDKClientMCP()
+	client, err := getSDKClientMCP(input.ClientID, input.ClientSecret)
 	if err != nil {
 		return nil, ListAttributesToolOutput{Success: false, Error: err.Error()}, nil
 	}

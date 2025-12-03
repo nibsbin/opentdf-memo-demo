@@ -82,13 +82,20 @@ The server provides the following tools:
 1. **encrypt** - Encrypt data using OpenTDF with specified attributes
    - Uses nanoTDF format exclusively
    - Creates .ntdf encrypted files with policy bindings
+   - Optional `clientId` and `clientSecret` parameters for authentication
 
 2. **decrypt** - Decrypt nanoTDF files
    - Returns plaintext data
+   - Optional `clientId` and `clientSecret` parameters for authentication
 
 3. **list_attributes** - List available data attributes from the platform
    - Optional namespace filtering
    - Verbose mode shows attribute values
+   - Optional `clientId` and `clientSecret` parameters for authentication
+
+### Authentication
+
+Each tool accepts optional `clientId` and `clientSecret` parameters. If provided, these credentials are used for OpenTDF platform authentication. If not provided, the server falls back to environment variables (`OPENTDF_CLIENT_ID`, `OPENTDF_CLIENT_SECRET`) or built-in defaults.
 
 ## Running the MCP Server
 
