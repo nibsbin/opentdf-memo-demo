@@ -248,21 +248,6 @@ OPENTDF_CLIENT_SECRET=password123
 
 ---
 
-## Quick Reference Commands
-
-```bash
-# Build MCP server
-cd opentdf-mcp && GOWORK=off go build -o opentdf-mcp-server ./mcp-server
-
-# Test CLI encrypt
-./opentdf-cli encrypt -a https://demo.usaf.mil/attr/flight_id/value/RCH2532101 -o test.ntdf "Hello"
-
-# Test CLI decrypt
-./opentdf-cli decrypt test.ntdf
-```
-
----
-
 ## Best Practices
 
 ### Testing
