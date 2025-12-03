@@ -22,14 +22,15 @@ func getClientID() string {
 	if clientID := os.Getenv("OPENTDF_CLIENT_ID"); clientID != "" {
 		return clientID
 	}
-	return "opentdf-sdk"
+	return ""
 }
 
 func getClientSecret() string {
 	if secret := os.Getenv("OPENTDF_CLIENT_SECRET"); secret != "" {
 		return secret
 	}
-	return "secret"
+	// Deafult disabled
+	return ""
 }
 
 func getAgentJWT() string {

@@ -119,9 +119,7 @@ Add to your Claude Desktop config file (`~/Library/Application Support/Claude/cl
     "opentdf": {
       "command": "/path/to/opentdf-mcp-server",
       "env": {
-        "OPENTDF_PLATFORM_ENDPOINT": "http://localhost:8080",
-        "OPENTDF_CLIENT_ID": "opentdf-sdk",
-        "OPENTDF_CLIENT_SECRET": "secret"
+        "OPENTDF_PLATFORM_ENDPOINT": "http://localhost:8080"
       }
     }
   }

@@ -16,17 +16,19 @@ Create base prompt template with placeholders for user data:
 
 ## Keycloak Config
 
-Configure users from [scenario](DEMO.md). Apply attributes to users:
+Configure users from [scenario](DEMO.md). Apply flag-based attributes to users:
 
-| User | flight_id | classification | functional |
-|------|-----------|----------------|------------|
-| Col Ashley Nies | RCH2532101, RCH2532102 | top-secret-fictional, secret-fictional | maintenance |
-| Maj Evan Riley | RCH2532101 | top-secret-fictional, secret-fictional | — |
-| Capt Julie Lee | RCH2532101 | top-secret-fictional, secret-fictional | — |
-| TSgt Marcus Hayes | RCH2532101 | top-secret-fictional, secret-fictional | — |
-| Maj Jonathan Fernando | RCH2532102 | top-secret-fictional, secret-fictional | — |
-| Capt Sarah Chen | RCH2532102 | top-secret-fictional, secret-fictional | — |
-| SrA PJ Jones | RCH2532101 | secret-fictional | maintenance |
+| User | flight_RCH2532101 | flight_RCH2532102 | classification_top_secret | classification_secret | functional_maintenance |
+|------|:-----------------:|:-----------------:|:-------------------------:|:---------------------:|:----------------------:|
+| Col Ashley Nies | ✓ | ✓ | ✓ | | ✓ |
+| Maj Evan Riley | ✓ | | ✓ | | |
+| Capt Julie Lee | ✓ | | ✓ | | |
+| TSgt Marcus Hayes | ✓ | | ✓ | | |
+| Maj Jonathan Fernando | | ✓ | ✓ | | |
+| Capt Sarah Chen | | ✓ | ✓ | | |
+| SrA PJ Jones | ✓ | | | ✓ | ✓ |
+
+> **Note:** Using flag-based attributes (value="true") instead of value-based attributes. This simplifies the subject mapping conditions and allows Col Nies to have access to BOTH flights.
 
 ### Keycloak Client Credentials
 
@@ -97,7 +99,7 @@ Below is a compact matrix showing which users can decrypt which documents in the
 | sra-pj-jones-kc-46-maintainer.txt | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 | maintenance-inspection-findings.csv | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 
-> Note: Wing Commander (Col Nies) has full attributes: RCH2532101, RCH2532102, top-secret-fictional, secret-fictional, and maintenance. Maintainers can view maintenance and engineering logs for flights they service. Aircrew see flight-scoped documents via RCH2532101 or RCH2532102 attributes.
+> Note: Wing Commander (Col Nies) has attributes: RCH2532101, top-secret-fictional, and maintenance. Maintainers can view maintenance and engineering logs for flights they service. Aircrew see flight-scoped documents via RCH2532101 or RCH2532102 attributes. Each user has a single value per attribute (flattened model).
 
 ### How to Use the Matrix During the Demo
 

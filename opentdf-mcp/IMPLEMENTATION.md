@@ -70,7 +70,6 @@ An MCP (Model Context Protocol) server for OpenTDF that exposes encryption, decr
 
 ### Default configuration
 - **Platform:** http://localhost:8080 (set via `OPENTDF_PLATFORM_ENDPOINT`)
-- **Client ID:** opentdf-sdk (has proper KAS permissions) — set with `OPENTDF_CLIENT_ID`
 - **Client Secret:** secret — set with `OPENTDF_CLIENT_SECRET`
 - **Format preference:** nanoTDF (better compatibility)
 
@@ -126,7 +125,6 @@ The implementation was tested for:
 - ✅ Successful build
 - ✅ CLI compatibility maintained
 - ✅ Proper MCP tool registration
-- ✅ Correct default credentials (opentdf-sdk:secret)
 
 To test with a real MCP client:
 1. Configure Claude Desktop as shown above
