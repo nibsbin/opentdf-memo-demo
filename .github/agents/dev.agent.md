@@ -19,15 +19,19 @@ The "aha!" moment: Two pilots (Maj Riley and Maj Fernando) have the same role, b
 
 ## Scenario Users & Attributes
 
-| User | Flight ID | Classification | Functional |
-|------|-----------|----------------|------------|
-| Col Ashley Nies | RCH2532101, RCH2532102 | top-secret-fictional, secret-fictional | maintenance |
-| Maj Evan Riley | RCH2532101 | top-secret-fictional, secret-fictional | — |
-| Capt Julie Lee | RCH2532101 | top-secret-fictional, secret-fictional | — |
-| TSgt Marcus Hayes | RCH2532101 | top-secret-fictional, secret-fictional | — |
-| Maj Jonathan Fernando | RCH2532102 | top-secret-fictional, secret-fictional | — |
-| Capt Sarah Chen | RCH2532102 | top-secret-fictional, secret-fictional | — |
-| SrA PJ Jones | RCH2532101 | secret-fictional | maintenance |
+| User | Client ID | Flight ID | Classification | Functional |
+|------|-----------|-----------|----------------|------------|
+| Col Ashley Nies | `ashley.nies` | RCH2532101, RCH2532102 | top-secret-fictional, secret-fictional | maintenance |
+| Maj Evan Riley | `evan.riley` | RCH2532101 | top-secret-fictional, secret-fictional | — |
+| Capt Julie Lee | `julie.lee` | RCH2532101 | top-secret-fictional, secret-fictional | — |
+| TSgt Marcus Hayes | `marcus.hayes` | RCH2532101 | top-secret-fictional, secret-fictional | — |
+| Maj Jonathan Fernando | `jonathan.fernando` | RCH2532102 | top-secret-fictional, secret-fictional | — |
+| Capt Sarah Chen | `sarah.chen` | RCH2532102 | top-secret-fictional, secret-fictional | — |
+| SrA PJ Jones | `pj.jones` | RCH2532101 | secret-fictional | maintenance |
+
+> **All users share the same password:** `password123`
+>
+> **Important:** Do NOT use `opentdf-sdk` as a client ID - that is only for platform administration, not user authentication.
 
 ---
 
@@ -157,6 +161,8 @@ mcp__opentdf-mcp__encrypt(
 
 ### 3. Test Access Control (Positive Tests)
 
+The password is `password123` for all users in this scenario.
+
 Test that authorized users CAN decrypt their documents:
 
 ```
@@ -234,9 +240,11 @@ Side-by-side comparison showing the strongest ABAC demonstration:
 
 ```bash
 OPENTDF_PLATFORM_ENDPOINT=http://localhost:8080
-OPENTDF_CLIENT_ID=ashley.nies  # or evan.riley, julie.lee, etc.
+OPENTDF_CLIENT_ID=ashley.nies  # or evan.riley, julie.lee, sarah.chen, etc.
 OPENTDF_CLIENT_SECRET=password123
 ```
+
+> **Note:** Client IDs use `firstname.lastname` format (e.g., `sarah.chen`, not `sarah-chen` or `SarahChen`).
 
 ---
 

@@ -26,9 +26,9 @@ type EncryptToolInput struct {
 	Input        string   `json:"input,omitempty" jsonschema:"Path to plaintext file to encrypt (mutually exclusive with data)"`
 	Data         string   `json:"data,omitempty" jsonschema:"Literal data to encrypt (mutually exclusive with input)"`
 	Attributes   []string `json:"attributes" jsonschema:"Data attributes (FQNs) to apply during encryption"`
-	Output       string   `json:"output,omitempty" jsonschema:"Output file path (optional, returns base64 if not specified)"`
-	ClientID     string   `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_ID or default if not specified)"`
-	ClientSecret string   `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_SECRET or default if not specified)"`
+	Output       string   `json:"output,omitempty" jsonschema:"Output file path (optional returns base64 if not specified)"`
+	ClientID     string   `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication"`
+	ClientSecret string   `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication"`
 }
 
 type EncryptToolOutput struct {
@@ -41,9 +41,9 @@ type EncryptToolOutput struct {
 // DecryptToolInput defines the input for the decrypt tool
 type DecryptToolInput struct {
 	Input        string `json:"input" jsonschema:"Path to encrypted file or base64 encoded data"`
-	Output       string `json:"output,omitempty" jsonschema:"Output file path (optional, returns plaintext if not specified)"`
-	ClientID     string `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_ID or default if not specified)"`
-	ClientSecret string `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_SECRET or default if not specified)"`
+	Output       string `json:"output,omitempty" jsonschema:"Output file path (optional returns plaintext if not specified)"`
+	ClientID     string `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication"`
+	ClientSecret string `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication"`
 }
 
 type DecryptToolOutput struct {
@@ -53,10 +53,10 @@ type DecryptToolOutput struct {
 }
 
 type ListAttributesToolInput struct {
-	Namespace    string `json:"namespace,omitempty" jsonschema:"Filter by namespace (e.g., https://example.com)"`
+	Namespace    string `json:"namespace,omitempty" jsonschema:"Filter by namespace (e.g. https://example.com)"`
 	Verbose      bool   `json:"verbose,omitempty" jsonschema:"Show detailed attribute information"`
-	ClientID     string `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_ID or default if not specified)"`
-	ClientSecret string `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication (optional, uses env var OPENTDF_CLIENT_SECRET or default if not specified)"`
+	ClientID     string `json:"clientId,omitempty" jsonschema:"OAuth client ID for OpenTDF platform authentication"`
+	ClientSecret string `json:"clientSecret,omitempty" jsonschema:"OAuth client secret for OpenTDF platform authentication"`
 }
 
 type ListAttributesToolOutput struct {

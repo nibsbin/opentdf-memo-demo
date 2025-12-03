@@ -28,6 +28,22 @@ Configure users from [scenario](DEMO.md). Apply attributes to users:
 | Capt Sarah Chen | RCH2532102 | top-secret-fictional, secret-fictional | — |
 | SrA PJ Jones | RCH2532101 | secret-fictional | maintenance |
 
+### Keycloak Client Credentials
+
+Each user is configured as an OAuth client in Keycloak. Use these credentials for MCP tool authentication:
+
+| User | Client ID | Client Secret |
+|------|-----------|---------------|
+| Col Ashley Nies | `ashley.nies` | `password123` |
+| Maj Evan Riley | `evan.riley` | `password123` |
+| Capt Julie Lee | `julie.lee` | `password123` |
+| TSgt Marcus Hayes | `marcus.hayes` | `password123` |
+| Maj Jonathan Fernando | `jonathan.fernando` | `password123` |
+| Capt Sarah Chen | `sarah.chen` | `password123` |
+| SrA PJ Jones | `pj.jones` | `password123` |
+
+> **Note:** Do NOT use `opentdf-sdk` as a client ID - that is only for platform administration, not user authentication.
+
 ## MCP Tools
 
 ### opentdf-mcp
