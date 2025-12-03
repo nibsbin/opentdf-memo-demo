@@ -71,16 +71,17 @@ Use these exact FQNs when encrypting documents:
 
 ### opentdf-mcp
 
-- `mcp__opentdf-mcp__encrypt` - Encrypt data with attributes
-  - `data`: Literal text to encrypt
+- `mcp__opentdf-mcp__encrypt` - Encrypt data with attributes (prefer using `input` for file-based encryption)
+  - `input`: Path to plaintext file to encrypt (**preferred** - mutually exclusive with `data`)
+  - `data`: Literal text to encrypt (use only for small inline data - mutually exclusive with `input`)
   - `attributes`: Array of attribute FQNs
   - `output`: Output file path (optional, defaults to `encrypted.ntdf`)
   - `clientId`: OAuth client ID (optional, falls back to env/defaults)
   - `clientSecret`: OAuth client secret (optional, falls back to env/defaults)
 
 - `mcp__opentdf-mcp__decrypt` - Decrypt TDF/nanoTDF files
-  - `input`: Path to encrypted file
-  - `output`: Output file path (optional)
+  - `input`: Path to encrypted file (.ntdf or .tdf)
+  - `output`: Output file path (optional, returns plaintext if not specified)
   - `clientId`: OAuth client ID (optional, falls back to env/defaults)
   - `clientSecret`: OAuth client secret (optional, falls back to env/defaults)
 
@@ -115,42 +116,42 @@ Expected namespaces/attributes:
 
 ### 2. Encrypt Scenario Documents
 
-Encrypt each document with the appropriate attributes based on its type:
+Encrypt each document with the appropriate attributes based on its type. **Prefer using `input` (file path) over `data` (literal text)** for efficiency and reliability:
 
 **KC-46 Aircrew Summaries** (top-secret + flight RCH2532101):
 ```
 mcp__opentdf-mcp__encrypt(
-  data: "<file_contents>",
+  input: "usaf-refueling-scenario/maj-evan-riley-kc-46-aircraft-commander.txt",
   attributes: [
     "https://demo.usaf.mil/attr/flight_id/value/RCH2532101",
     "https://demo.usaf.mil/attr/classification/value/top-secret-fictional"
   ],
-  output: "encrypted/maj-evan-riley-kc-46-aircraft-commander.ntdf"
+  output: "ENCRYPTED/maj-evan-riley-kc-46-aircraft-commander.ntdf"
 )
 ```
 
 **KC-46 Flight Logs** (secret + flight RCH2532101):
 ```
 mcp__opentdf-mcp__encrypt(
-  data: "<file_contents>",
+  input: "usaf-refueling-scenario/kc-46-flight-log-data.csv",
   attributes: [
     "https://demo.usaf.mil/attr/flight_id/value/RCH2532101",
     "https://demo.usaf.mil/attr/classification/value/secret-fictional"
   ],
-  output: "encrypted/kc-46-flight-log-data.ntdf"
+  output: "ENCRYPTED/kc-46-flight-log-data.ntdf"
 )
 ```
 
 **Maintenance Documents** (secret + maintenance):
 ```
 mcp__opentdf-mcp__encrypt(
-  data: "<file_contents>",
+  input: "usaf-refueling-scenario/maintenance-inspection-findings.csv",
   attributes: [
     "https://demo.usaf.mil/attr/flight_id/value/RCH2532101",
     "https://demo.usaf.mil/attr/classification/value/secret-fictional",
     "https://demo.usaf.mil/attr/functional/value/maintenance"
   ],
-  output: "encrypted/maintenance-inspection-findings.ntdf"
+  output: "ENCRYPTED/maintenance-inspection-findings.ntdf"
 )
 ```
 
@@ -242,8 +243,8 @@ OPENTDF_CLIENT_SECRET=password123
 ## File Locations
 
 - **Scenario source files:** `usaf-refueling-scenario/`
-- **Encrypted files:** `encrypted/` (create if needed)
-- **Decrypted output:** `decrypted/`
+- **Encrypted files:** `ENCRYPTED/` (already exists with pre-encrypted files)
+- **Decrypted output:** `decrypted/` (create if needed)
 - **Memo drafts:** `drafts/`
 
 ---
@@ -261,6 +262,8 @@ OPENTDF_CLIENT_SECRET=password123
 - Confirm Keycloak user attributes match the matrix
 
 ### Encryption
+- **Prefer `input` (file path) over `data`** for file-based encryption - this avoids token limits and encoding issues
+- Only use `data` parameter for small inline text that doesn't exist as a file
 - Always specify all required attributes for a document
 - Use nanoTDF format (`.ntdf`) for better compatibility
-- Store encrypted files in a dedicated `encrypted/` directory
+- Store encrypted files in a dedicated `ENCRYPTED/` directory
