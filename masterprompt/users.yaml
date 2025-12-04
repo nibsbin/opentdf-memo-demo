@@ -1,14 +1,6 @@
 # User configuration for agent prompt generation
 # Each user corresponds to a persona in the ABAC demo scenario
 
-defaults:
-  client_secret: "mock.jwt.token"
-  common_tasks:
-    - "Decrypt files in `encrypted-scenario/` to verify access."
-    - "Create memos using `memo-mcp`."
-  restrictions:
-    - "DO NOT READ `usaf-refueling-scenario/`. All files encrypted scenario files are located in `encrypted-scenario/`."
-
 users:
   - name: "Col Ashley Nies"
     client_id: "ashley.nies"

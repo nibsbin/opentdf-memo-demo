@@ -30,19 +30,8 @@ def load_config(config_path: Path) -> dict:
         return yaml.safe_load(f)
 
 
-def render_user(user: dict, defaults: dict, template_content: str) -> str:
+def render_user(user: dict, template_content: str) -> str:
     """Render a single user's agent file content."""
-    # Merge defaults with user-specific values
-    client_secret = user.get("client_secret", defaults["client_secret"])
-    common_tasks = user.get("common_tasks", defaults["common_tasks"])
-    restrictions = user.get("restrictions", defaults["restrictions"])
-
-    # Format common tasks as markdown list
-    tasks_str = "\n".join(f"- {task}" for task in common_tasks)
-
-    # Format restrictions
-    restrictions_str = "\n".join(restrictions)
-
     # Clean up access_summary (remove trailing whitespace per line)
     access_summary = user["access_summary"].rstrip()
 
@@ -54,11 +43,8 @@ def render_user(user: dict, defaults: dict, template_content: str) -> str:
         "name": user["name"],
         "role": user["role"],
         "client_id": user["client_id"],
-        "client_secret": client_secret,
         "access_summary": access_summary,
         "bio": bio,
-        "restrictions": restrictions_str,
-        "common_tasks": tasks_str,
     }
 
     # Use Template for safe substitution
@@ -102,7 +88,6 @@ def main():
 
     # Load configuration and template
     config = load_config(args.config)
-    defaults = config["defaults"]
     users = config["users"]
     template_content = load_template(args.template)
 
@@ -115,7 +100,7 @@ def main():
 
     # Render each user
     for user in users:
-        content = render_user(user, defaults, template_content)
+        content = render_user(user, template_content)
         filename = get_output_filename(user["client_id"])
 
         if args.dry_run:
