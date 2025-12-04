@@ -29,7 +29,7 @@ The "aha!" moment: Two pilots (Maj Riley and Maj Fernando) have the same role, b
 | Capt Sarah Chen | `sarah.chen` | RCH2532102 | top-secret-fictional, secret-fictional | — |
 | SrA PJ Jones | `pj.jones` | RCH2532101 | secret-fictional | maintenance |
 
-> **All users share the same password:** `password123`
+> **All users share the same password:** `mock.jwt.token`
 >
 > **Important:** Do NOT use `opentdf-sdk` as a client ID - that is only for platform administration, not user authentication.
 
@@ -163,7 +163,7 @@ mcp__opentdf-mcp__encrypt(
 
 ### 3. Test Access Control (Positive Tests)
 
-The password is `password123` for all users in this scenario.
+The password is `mock.jwt.token` for all users in this scenario.
 
 Test that authorized users CAN decrypt their documents:
 
@@ -172,14 +172,14 @@ Test that authorized users CAN decrypt their documents:
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/maj-evan-riley-kc-46-aircraft-commander.ntdf",
   clientId: "ashley.nies",
-  clientSecret: "password123"
+  clientSecret: "mock.jwt.token"
 )
 
 # Test as Maj Riley (KC-46 flight only)
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/maj-evan-riley-kc-46-aircraft-commander.ntdf",
   clientId: "evan.riley",
-  clientSecret: "password123"
+  clientSecret: "mock.jwt.token"
 )
 ```
 
@@ -192,7 +192,7 @@ Test that unauthorized users CANNOT decrypt documents:
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/maj-evan-riley-kc-46-aircraft-commander.ntdf",
   clientId: "jonathan.fernando",
-  clientSecret: "password123"
+  clientSecret: "mock.jwt.token"
 )
 # Expected: Permission denied error
 
@@ -200,7 +200,7 @@ mcp__opentdf-mcp__decrypt(
 mcp__opentdf-mcp__decrypt(
   input: "encrypted/kc-46-flight-log-data.ntdf",
   clientId: "sarah.chen",
-  clientSecret: "password123"
+  clientSecret: "mock.jwt.token"
 )
 # Expected: Permission denied error
 ```
@@ -243,7 +243,7 @@ Side-by-side comparison showing the strongest ABAC demonstration:
 ```bash
 OPENTDF_PLATFORM_ENDPOINT=http://localhost:8080
 OPENTDF_CLIENT_ID=ashley.nies  # or evan.riley, julie.lee, sarah.chen, etc.
-OPENTDF_CLIENT_SECRET=password123
+OPENTDF_CLIENT_SECRET=mock.jwt.token
 ```
 
 > **Note:** Client IDs use `firstname.lastname` format (e.g., `sarah.chen`, not `sarah-chen` or `SarahChen`).

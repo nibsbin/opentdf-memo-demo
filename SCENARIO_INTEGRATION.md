@@ -36,13 +36,13 @@ Each user is configured as an OAuth client in Keycloak. Use these credentials fo
 
 | User | Client ID | Client Secret |
 |------|-----------|---------------|
-| Col Ashley Nies | `ashley.nies` | `password123` |
-| Maj Evan Riley | `evan.riley` | `password123` |
-| Capt Julie Lee | `julie.lee` | `password123` |
-| TSgt Marcus Hayes | `marcus.hayes` | `password123` |
-| Maj Jonathan Fernando | `jonathan.fernando` | `password123` |
-| Capt Sarah Chen | `sarah.chen` | `password123` |
-| SrA PJ Jones | `pj.jones` | `password123` |
+| Col Ashley Nies | `ashley.nies` | `mock.jwt.token` |
+| Maj Evan Riley | `evan.riley` | `mock.jwt.token` |
+| Capt Julie Lee | `julie.lee` | `mock.jwt.token` |
+| TSgt Marcus Hayes | `marcus.hayes` | `mock.jwt.token` |
+| Maj Jonathan Fernando | `jonathan.fernando` | `mock.jwt.token` |
+| Capt Sarah Chen | `sarah.chen` | `mock.jwt.token` |
+| SrA PJ Jones | `pj.jones` | `mock.jwt.token` |
 
 > **Note:** Do NOT use `opentdf-sdk` as a client ID - that is only for platform administration, not user authentication.
 

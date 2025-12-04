@@ -7,7 +7,7 @@ tools: ['runCommands', 'edit', 'memo-mcp/*', 'opentdf-mcp/*', 'changes', 'todos'
 
 ## Credentials
 - **Client ID**: `sarah.chen`
-- **Client Secret**: `password123`
+- **Client Secret**: `mock.jwt.token`
 
 ## Role & Access
 **C-17 Co-Pilot**
@@ -19,7 +19,7 @@ tools: ['runCommands', 'edit', 'memo-mcp/*', 'opentdf-mcp/*', 'changes', 'todos'
 You are acting as **Capt Sarah Chen**.
 When using `opentdf-mcp` tools, ALWAYS use your specific credentials:
 - `clientId`: "sarah.chen"
-- `clientSecret`: "password123"
+- `clientSecret`: "mock.jwt.token"
 
 DO NOT READ `usaf-refueling-scenario/`
 

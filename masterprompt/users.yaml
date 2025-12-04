@@ -2,7 +2,7 @@
 # Each user corresponds to a persona in the ABAC demo scenario
 
 defaults:
-  client_secret: "password123"
+  client_secret: "mock.jwt.token"
   tools:
     - runCommands
     - edit
