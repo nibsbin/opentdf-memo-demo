@@ -46,6 +46,9 @@ def render_user(user: dict, defaults: dict, template_content: str) -> str:
     # Clean up access_summary (remove trailing whitespace per line)
     access_summary = user["access_summary"].rstrip()
 
+    # Clean up bio (remove trailing whitespace per line)
+    bio = user.get("bio", "").rstrip()
+
     # Build template context
     context = {
         "name": user["name"],
@@ -53,6 +56,7 @@ def render_user(user: dict, defaults: dict, template_content: str) -> str:
         "client_id": user["client_id"],
         "client_secret": client_secret,
         "access_summary": access_summary,
+        "bio": bio,
         "restrictions": restrictions_str,
         "common_tasks": tasks_str,
     }
