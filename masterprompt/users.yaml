@@ -1,0 +1,124 @@
+# User configuration for agent prompt generation
+# Each user corresponds to a persona in the ABAC demo scenario
+
+defaults:
+  client_secret: "password123"
+  tools:
+    - runCommands
+    - edit
+    - memo-mcp/*
+    - opentdf-mcp/*
+    - changes
+    - todos
+  common_tasks:
+    - "Decrypt files in `encrypted-scenario/` to verify access."
+    - "Create memos using `memo-mcp`."
+  restrictions:
+    - "DO NOT READ `usaf-refueling-scenario/`"
+
+users:
+  - name: "Col Ashley Nies"
+    client_id: "ashley.nies"
+    role: "Wing Commander"
+    access:
+      flights:
+        - "RCH2532101"
+        - "RCH2532102"
+      clearance:
+        - "Top Secret"
+        - "Secret"
+      maintenance: true
+    access_summary: |
+      - Has access to **ALL** flights (RCH2532101, RCH2532102)
+      - Has **Top Secret** and **Secret** clearance
+      - Has **Maintenance** access
+
+  - name: "Maj Evan Riley"
+    client_id: "evan.riley"
+    role: "KC-46 Aircraft Commander"
+    access:
+      flights:
+        - "RCH2532101"
+      clearance:
+        - "Top Secret"
+        - "Secret"
+      maintenance: false
+    access_summary: |
+      - Has access to **KC-46 flight RCH2532101** ONLY
+      - Has **Top Secret** and **Secret** clearance
+      - **NO** access to C-17 flights or Maintenance data
+
+  - name: "Capt Julie Lee"
+    client_id: "julie.lee"
+    role: "KC-46 Co-Pilot"
+    access:
+      flights:
+        - "RCH2532101"
+      clearance:
+        - "Top Secret"
+        - "Secret"
+      maintenance: false
+    access_summary: |
+      - Has access to **KC-46 flight RCH2532101** ONLY
+      - Has **Top Secret** and **Secret** clearance
+      - **NO** access to C-17 flights or Maintenance data
+
+  - name: "TSgt Marcus Hayes"
+    client_id: "marcus.hayes"
+    role: "KC-46 Boom Operator"
+    access:
+      flights:
+        - "RCH2532101"
+      clearance:
+        - "Top Secret"
+        - "Secret"
+      maintenance: false
+    access_summary: |
+      - Has access to **KC-46 flight RCH2532101** ONLY
+      - Has **Top Secret** and **Secret** clearance
+      - **NO** access to C-17 flights or Maintenance data
+
+  - name: "Maj Jonathan Fernando"
+    client_id: "jonathan.fernando"
+    role: "C-17 Aircraft Commander"
+    access:
+      flights:
+        - "RCH2532102"
+      clearance:
+        - "Top Secret"
+        - "Secret"
+      maintenance: false
+    access_summary: |
+      - Has access to **C-17 flight RCH2532102** ONLY
+      - Has **Top Secret** and **Secret** clearance
+      - **NO** access to KC-46 flights or Maintenance data
+
+  - name: "Capt Sarah Chen"
+    client_id: "sarah.chen"
+    role: "C-17 Co-Pilot"
+    access:
+      flights:
+        - "RCH2532102"
+      clearance:
+        - "Top Secret"
+        - "Secret"
+      maintenance: false
+    access_summary: |
+      - Has access to **C-17 flight RCH2532102** ONLY
+      - Has **Top Secret** and **Secret** clearance
+      - **NO** access to KC-46 flights or Maintenance data
+
+  - name: "SrA PJ Jones"
+    client_id: "pj.jones"
+    role: "KC-46 Maintainer"
+    access:
+      flights:
+        - "RCH2532101"
+      clearance:
+        - "Secret"
+      maintenance: true
+    access_summary: |
+      - Has access to **Maintenance** data
+      - Has access to **KC-46 flight RCH2532101** logs
+      - Has **Secret** clearance
+      - **NO** access to Top Secret aircrew summaries or C-17 flights
