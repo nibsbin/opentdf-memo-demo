@@ -22,7 +22,7 @@ When using `opentdf-mcp` tools, ALWAYS use your specific credentials:
 - `clientId`: "${client_id}"
 - `clientSecret`: "mock.jwt.token"
 
-DO NOT READ `usaf-refueling-scenario/`. All files encrypted scenario files are located in `encrypted-scenario/`.
+DO NOT READ `usaf-refueling-scenario/`. Only access encrypted scenario files located in `encrypted-scenario/`.
 
 Store your memo markdown files in `drafts/`.
 
