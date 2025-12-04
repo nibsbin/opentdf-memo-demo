@@ -9,41 +9,19 @@ Usage:
 """
 
 import argparse
-import os
 from pathlib import Path
 from string import Template
 import yaml
 
 
-# Agent file template
-AGENT_TEMPLATE = """\
-```chatagent
----
-description: 'Simulate user session for ${name} (${role})'
-tools: [${tools}]
----
+# Default template path
+DEFAULT_TEMPLATE_PATH = Path(__file__).parent / "agent_template.md"
 
-# User Session: ${name}
 
-## Credentials
-- **Client ID**: `${client_id}`
-- **Client Secret**: `${client_secret}`
-
-## Role & Access
-**${role}**
-${access_summary}
-## Instructions
-You are acting as **${name}**.
-When using `opentdf-mcp` tools, ALWAYS use your specific credentials:
-- `clientId`: "${client_id}"
-- `clientSecret`: "${client_secret}"
-
-${restrictions}
-
-## Common Tasks
-${common_tasks}
-```
-"""
+def load_template(template_path: Path) -> str:
+    """Load the template file."""
+    with open(template_path, "r") as f:
+        return f.read()
 
 
 def load_config(config_path: Path) -> dict:
@@ -52,16 +30,12 @@ def load_config(config_path: Path) -> dict:
         return yaml.safe_load(f)
 
 
-def render_user(user: dict, defaults: dict) -> str:
+def render_user(user: dict, defaults: dict, template_content: str) -> str:
     """Render a single user's agent file content."""
     # Merge defaults with user-specific values
     client_secret = user.get("client_secret", defaults["client_secret"])
-    tools = user.get("tools", defaults["tools"])
     common_tasks = user.get("common_tasks", defaults["common_tasks"])
     restrictions = user.get("restrictions", defaults["restrictions"])
-
-    # Format tools list
-    tools_str = ", ".join(f"'{t}'" for t in tools)
 
     # Format common tasks as markdown list
     tasks_str = "\n".join(f"- {task}" for task in common_tasks)
@@ -78,14 +52,13 @@ def render_user(user: dict, defaults: dict) -> str:
         "role": user["role"],
         "client_id": user["client_id"],
         "client_secret": client_secret,
-        "tools": tools_str,
         "access_summary": access_summary,
         "restrictions": restrictions_str,
         "common_tasks": tasks_str,
     }
 
     # Use Template for safe substitution
-    template = Template(AGENT_TEMPLATE)
+    template = Template(template_content)
     return template.substitute(context)
 
 
@@ -115,14 +88,22 @@ def main():
         action="store_true",
         help="Print rendered content to stdout instead of writing files",
     )
+    parser.add_argument(
+        "--template",
+        type=Path,
+        default=DEFAULT_TEMPLATE_PATH,
+        help="Path to template file (default: agent_template.md)",
+    )
     args = parser.parse_args()
 
-    # Load configuration
+    # Load configuration and template
     config = load_config(args.config)
     defaults = config["defaults"]
     users = config["users"]
+    template_content = load_template(args.template)
 
     print(f"Loaded {len(users)} users from {args.config}")
+    print(f"Using template: {args.template}")
 
     # Ensure output directory exists
     if not args.dry_run:
@@ -130,7 +111,7 @@ def main():
 
     # Render each user
     for user in users:
-        content = render_user(user, defaults)
+        content = render_user(user, defaults, template_content)
         filename = get_output_filename(user["client_id"])
 
         if args.dry_run:

@@ -3,13 +3,6 @@
 
 defaults:
   client_secret: "mock.jwt.token"
-  tools:
-    - runCommands
-    - edit
-    - memo-mcp/*
-    - opentdf-mcp/*
-    - changes
-    - todos
   common_tasks:
     - "Decrypt files in `encrypted-scenario/` to verify access."
     - "Create memos using `memo-mcp`."
@@ -20,6 +13,12 @@ users:
   - name: "Col Ashley Nies"
     client_id: "ashley.nies"
     role: "Wing Commander"
+    bio: |
+      Col Ashley Nies is the Wing Commander with full oversight of all flight operations.
+      She holds Top Secret clearance and has visibility into both KC-46 (RCH2532101) and
+      C-17 (RCH2532102) flight missions, as well as maintenance operations. As the senior
+      officer, she is responsible for coordinating with Air Mobility Command (AMC) and
+      ensuring mission readiness across all aircraft in her wing.
     access:
       flights:
         - "RCH2532101"
@@ -36,6 +35,11 @@ users:
   - name: "Maj Evan Riley"
     client_id: "evan.riley"
     role: "KC-46 Aircraft Commander"
+    bio: |
+      Maj Evan Riley is the Aircraft Commander for KC-46 flight RCH2532101. He is
+      responsible for the safe execution of aerial refueling operations and commands
+      the KC-46 tanker crew. He holds Top Secret clearance and has access to all
+      personnel summaries and flight logs for his specific mission.
     access:
       flights:
         - "RCH2532101"
@@ -51,6 +55,11 @@ users:
   - name: "Capt Julie Lee"
     client_id: "julie.lee"
     role: "KC-46 Co-Pilot"
+    bio: |
+      Capt Julie Lee serves as Co-Pilot on KC-46 flight RCH2532101. She assists
+      Maj Riley in flight operations and aerial refueling missions. She holds Top
+      Secret clearance and has access to KC-46 crew summaries and flight logs for
+      her assigned mission.
     access:
       flights:
         - "RCH2532101"
@@ -66,6 +75,11 @@ users:
   - name: "TSgt Marcus Hayes"
     client_id: "marcus.hayes"
     role: "KC-46 Boom Operator"
+    bio: |
+      TSgt Marcus Hayes is the Boom Operator on KC-46 flight RCH2532101. He is
+      responsible for operating the refueling boom during aerial refueling operations
+      with receiver aircraft. He holds Top Secret clearance and has access to KC-46
+      crew summaries, flight logs, and refueling logs for his mission.
     access:
       flights:
         - "RCH2532101"
@@ -81,6 +95,11 @@ users:
   - name: "Maj Jonathan Fernando"
     client_id: "jonathan.fernando"
     role: "C-17 Aircraft Commander"
+    bio: |
+      Maj Jonathan Fernando is the Aircraft Commander for C-17 flight RCH2532102.
+      He commands the C-17 Globemaster III transport aircraft and is responsible
+      for cargo and personnel airlift missions. He holds Top Secret clearance and
+      has access to C-17 crew summaries and flight logs for his specific mission.
     access:
       flights:
         - "RCH2532102"
@@ -96,6 +115,11 @@ users:
   - name: "Capt Sarah Chen"
     client_id: "sarah.chen"
     role: "C-17 Co-Pilot"
+    bio: |
+      Capt Sarah Chen serves as Co-Pilot on C-17 flight RCH2532102. She assists
+      Maj Fernando in operating the C-17 Globemaster III and supports airlift
+      mission execution. She holds Top Secret clearance and has access to C-17
+      crew summaries and flight logs for her assigned mission.
     access:
       flights:
         - "RCH2532102"
@@ -111,6 +135,12 @@ users:
   - name: "SrA PJ Jones"
     client_id: "pj.jones"
     role: "KC-46 Maintainer"
+    bio: |
+      SrA PJ Jones is an Aircraft Maintainer assigned to KC-46 flight RCH2532101.
+      He is responsible for pre-flight inspections, post-flight maintenance, and
+      documenting any discrepancies or findings. He holds Secret clearance and has
+      access to maintenance documents and flight logs, but not Top Secret aircrew
+      personnel summaries.
     access:
       flights:
         - "RCH2532101"
