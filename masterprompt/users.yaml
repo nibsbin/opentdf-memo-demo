@@ -7,7 +7,7 @@ defaults:
     - "Decrypt files in `encrypted-scenario/` to verify access."
     - "Create memos using `memo-mcp`."
   restrictions:
-    - "DO NOT READ `usaf-refueling-scenario/`"
+    - "DO NOT READ `usaf-refueling-scenario/`. All files encrypted scenario files are located in `encrypted-scenario/`."
 
 users:
   - name: "Col Ashley Nies"
