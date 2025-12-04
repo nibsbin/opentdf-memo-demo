@@ -122,9 +122,9 @@ def render_memo_to_pdf(markdown_file_path: str) -> str:
             f"but found 'QUILL: {quill_tag}'"
         )
     
-    # Create workflow and render
+    # Create workflow and render (quillmark v0.9.0 API)
     try:
-        workflow = qm.workflow_from_parsed(parsed)
+        workflow = qm.workflow(quill_tag)
         result = workflow.render(parsed, quillmark.OutputFormat.PDF)
     except Exception as e:
         raise Exception(f"Failed to render PDF: {e}")
